@@ -1,12 +1,14 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
-public class ActivityMain extends AppCompatActivity {
+public class ActivityMain extends FragmentActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
