@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Phoenix Database Managers</string>
+    <string name="error">ERROR: %1$s</string>
+    <string name="exit">CLOSE</string>
 </resources>
