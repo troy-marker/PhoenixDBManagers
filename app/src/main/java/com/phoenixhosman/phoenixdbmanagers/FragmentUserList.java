@@ -5,24 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * User List Fragment code file
@@ -94,7 +85,6 @@ public class FragmentUserList extends Fragment {
                 }
                 uAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onFailure(@NonNull Call<ObjectUserResponse> call, @NonNull Throwable t) {
             }
@@ -135,8 +125,6 @@ public class FragmentUserList extends Fragment {
             holder.tvCreated.setText(currentUser.getCreated());
             holder.tvGrade.setText(currentUser.getGradeName());
             holder.tvDepartment.setText(currentUser.getDepartmentname());
-            //getGradeName(currentUser.getGrade(), holder.tvGrade :: setText);
-            //getDepartmentName(currentUser.getDepartment(), holder.tvDepartment :: setText);
         }
         @Override
         public int getItemCount() {
