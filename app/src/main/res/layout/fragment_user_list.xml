@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/user_list_title"
+        android:textSize="36sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/x_border"
+            android:gravity="center_horizontal"
+            android:text="@string/select"
+            android:textAllCaps="true"
+            android:textColor="@color/Phoenix_Black" />
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/x_border"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textAllCaps="true"
+            android:textColor="@color/Phoenix_Black" />
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/x_border"
+            android:gravity="center"
+            android:text="@string/created"
+            android:textAllCaps="true"
+            android:textColor="@color/Phoenix_Black" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/x_border"
+            android:gravity="center"
+            android:text="@string/grade"
+            android:textAllCaps="true"
+            android:textColor="@color/Phoenix_Black" />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/x_border"
+            android:gravity="center"
+            android:text="@string/department"
+            android:textAllCaps="true"
+            android:textColor="@color/Phoenix_Black" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewUserList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"/>
+</LinearLayout>
