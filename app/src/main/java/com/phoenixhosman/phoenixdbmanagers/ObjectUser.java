@@ -37,9 +37,12 @@ public class ObjectUser {
         this.departmentname = departmentname;
     }
 
+    public ObjectUser() {
+
+    }
+
     /**
-     * Gets id.
-     *
+     * Gets the value of the id
      * @return the id
      */
     public int getId() {
@@ -47,8 +50,15 @@ public class ObjectUser {
     }
 
     /**
+     * Set Id
+     * @param value int value of the new id
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
+
+    /**
      * Gets username.
-     *
      * @return the username
      */
     String getUsername() {
@@ -56,8 +66,15 @@ public class ObjectUser {
     }
 
     /**
+     * Set the username
+     * @param value String the value of the username
+     */
+    public void setUsername(String value) {
+        this.username = value;
+    }
+
+    /**
      * Gets password.
-     *
      * @return the password
      */
     String getPassword() {
@@ -65,8 +82,15 @@ public class ObjectUser {
     }
 
     /**
-     * Gets created.
-     *
+     * Set the password
+     * @param value String value for the password
+     */
+    public void setPassword(String value) {
+        this.password = value;
+    }
+
+    /**
+     * Gets date/time the user was created.
      * @return the created date
      */
     String getCreated() {
@@ -74,8 +98,15 @@ public class ObjectUser {
     }
 
     /**
-     * Gets modified.
-     *
+     * Sets the date/time the user was created
+     * @param value String the date/time the user was created
+     */
+    public void setCreated(String value) {
+        this.created = value;
+    }
+
+    /**
+     * Gets the date/time the user was last modified
      * @return the modified date
      */
     String getModified() {
@@ -83,8 +114,15 @@ public class ObjectUser {
     }
 
     /**
-     * Gets grade.
-     *
+     * Sets the date/time the user was last modified
+     * @param value the date/time the user was last modified
+     */
+    public void setModified(String value) {
+        this.modified = value;
+    }
+
+    /**
+     * Gets grade id number
      * @return the grade
      */
     int getGrade() {
@@ -92,8 +130,15 @@ public class ObjectUser {
     }
 
     /**
-     * Gets the GradeName
-     *
+     * Sets users grade id
+     * @param value users grade id
+     */
+    public void setGrade(int value) {
+        this.grade = value;
+    }
+
+    /**
+     * Gets the Grade Name
      * @return gradename
      */
     String getGradeName() {
@@ -101,8 +146,15 @@ public class ObjectUser {
     }
 
     /**
-     * Gets department.
-     *
+     * Sets the user grade text name
+     * @param value tthe users grade text name
+     */
+    public void setGradeName(String value) {
+        this.gradename = value;
+    }
+
+    /**
+     * Gets department id
      * @return the department
      */
     int getDepartment() {
@@ -110,20 +162,26 @@ public class ObjectUser {
     }
 
     /**
-     * Gets the deaprtment name
-     *
-     * @return the department name
+     * Sets the user's department id
+     * @param value the user's department id
+     */
+    public void setDepartment(int value) {
+        this.department = value;
+    }
+
+    /**
+     * Gets the users deaprtment text name
+     * @return the department text name
      */
     String getDepartmentname() {
         return departmentname;
     }
+
     /**
-     * Overrider of the toString method
-     *
-     * @return String username
+     * Sets the user's department text name
+     * @param value the user's department text name
      */
-    @Override
-    public String toString() {
-        return username;
+    public void setDepartmentname(String value) {
+        this.departmentname = value;
     }
 }

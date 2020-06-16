@@ -5,5 +5,7 @@
         <item name="android:textColor">@color/Phoenix_White</item>
         <item name="android:fontFamily">@font/okuda</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:spinnerStyle">@android:style/Widget.Holo.Light.Spinner</item>
     </style>
 </resources>

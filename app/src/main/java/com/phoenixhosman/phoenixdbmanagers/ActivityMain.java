@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -51,6 +52,8 @@ public class ActivityMain extends FragmentActivity {
     private ArrayList<ObjectMenu> MenuList = new ArrayList<>();
     private ArrayList<ObjectSubMenu> objSubMenu = new ArrayList<>();
     private ArrayList<ObjectMenu> SubmenuList = new ArrayList<>();
+    private FragmentBlank blank1 = new FragmentBlank();
+    private FragmentBlank blank2 = new FragmentBlank();
 
     /**
      * Override of the parent onCreate method
@@ -109,19 +112,8 @@ public class ActivityMain extends FragmentActivity {
             if (savedInstanceState != null) {
                 return;
             }
-            FragmentBlank blankFragment = new FragmentBlank();
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.topFrame, blankFragment).commit();
-        }
-        if (findViewById(R.id.bottomFrame) != null) {
-            if (savedInstanceState != null) {
-                return;
-            }
-            FragmentBlank blankFragment = new FragmentBlank();
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.bottomFrame, blankFragment).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.topFrame, blank1).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.bottomFrame, blank2).commit();
         }
         BuildMenu();
         mAdapter.notifyDataSetChanged();
@@ -213,16 +205,17 @@ public class ActivityMain extends FragmentActivity {
             final ObjectMenu currentMenu = mMenu.get(position);
             holder.btnMenuItem.setText(currentMenu.getName());
             holder.btnMenuItem.setOnClickListener(v -> {
+                getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blank1).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, blank2).commit();
                 if (holder.btnMenuItem.isSelected()) {
                     strSubMenuName = null;
+                    holder.btnMenuItem.setSelected(false);
+                    resetSubMenu(sRecyclerView);
                     SubmenuList.clear();
                     sAdapter.notifyDataSetChanged();
                 } else {
                     resetMainMenu(mRecyclerView);
                     resetSubMenu(sRecyclerView);
-                    FragmentBlank blankFragment = new FragmentBlank();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, blankFragment).commit();
                     holder.btnMenuItem.setSelected(true);
                     strMenuName = currentMenu.getName();
                     GetSubMenu(currentMenu.getName());
@@ -266,8 +259,8 @@ public class ActivityMain extends FragmentActivity {
                 if (holder.btnSubmenuItem.isSelected()) {
                     resetSubMenu(sRecyclerView);
                     strSubMenuName = null;
-                    FragmentBlank blankFragment = new FragmentBlank();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blank1).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, blank2).commit();
                 } else {
                     resetSubMenu(sRecyclerView);
                     holder.btnSubmenuItem.setSelected(true);
@@ -312,18 +305,22 @@ public class ActivityMain extends FragmentActivity {
         Bundle bundle = new Bundle();
         bundle.putString("CoName", strCoName);
         bundle.putString("ApiUrl", strApiUrl);
+        FragmentBlank blankFragment = new FragmentBlank();
+        FragmentUserList userlistFragment = new FragmentUserList();
+        FragmentUserAdd useraddFragment = new FragmentUserAdd();
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
                     case "List":
-                        FragmentUserList userlistFragment = new FragmentUserList();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
                         userlistFragment.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
                     case "Add":
-                        //FragmentUserAdd useraddFragment = new FragmentUserAdd();
-                        //useraddFragment.setArguments(bundle);
-                        //getSupportFragmentManager().beginTransaction().replace(R.id.container, useraddFragment).commit();
+                        useraddFragment.setArguments(bundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, useraddFragment).commit();
+                        userlistFragment.setArguments(bundle);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
                     case "Update":
                     case "Remove":
@@ -341,9 +338,6 @@ public class ActivityMain extends FragmentActivity {
                         throw new IllegalStateException("Unexpected value: " + strSubMenuName);
                 }
                 break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + strMenuName);
         }
     }
-
 }

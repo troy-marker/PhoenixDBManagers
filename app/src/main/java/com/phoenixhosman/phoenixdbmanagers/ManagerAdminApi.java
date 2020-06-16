@@ -44,33 +44,12 @@ class ManagerAdminApi {
     }
 
     /**
-     * Gets grade name.
-     *  @param grade    the grade
-     * @param callback the callback
-     */
-    void getGradeName(int grade, Callback<ObjectGradeResponse> callback) {
-        Call<ObjectGradeResponse> gradeNameCall = service.getGradeName(grade);
-        gradeNameCall.enqueue(callback);
-    }
-
-    /**
-     * Gets department name.
-     *
-     * @param department the department number
-     * @param callback the callback
-     */
-    void getDepartmentName(int department, Callback<ArrayList<ObjectDepartment>> callback) {
-        Call<ArrayList<ObjectDepartment>> departmentNameCall = service.getDepartmentName(department);
-        departmentNameCall.enqueue(callback);
-    }
-
-    /**
      * Gets all grade in the database
      *
      * @param callback the callback
      */
-    void getGradeList(Callback<ArrayList<ObjectGrade>> callback) {
-        Call<ArrayList<ObjectGrade>> gradeListCall = service.getGradeList();
+    void grade(Callback<String> callback) {
+        Call<String> gradeListCall = service.grade();
         gradeListCall.enqueue(callback);
     }
 }

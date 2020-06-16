@@ -4,11 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -24,7 +30,7 @@ import retrofit2.Response;
 public class FragmentUserList extends Fragment {
     private ManagerAdminApi managerAdminApi;
     private RecyclerView.Adapter uAdapter;
-    private ArrayList<ObjectUser> userList = new ArrayList<ObjectUser>();
+    private final ArrayList<ObjectUser> userList = new ArrayList<>();
 
 
     public FragmentUserList() {
@@ -61,6 +67,10 @@ public class FragmentUserList extends Fragment {
      * Method to read the user list from the database
      */
 
+    /**
+     * Method to read the user list from the database
+     */
+
     private void readUsers() {
         userList.clear();
         managerAdminApi.user(new Callback<ObjectUserResponse>() {
@@ -72,15 +82,15 @@ public class FragmentUserList extends Fragment {
                 for (int i = 0, dataLength = data.length; i < dataLength; i++) {
                     ObjectUser datum = data[i];
                     userList.add(new ObjectUser(
-                        datum.getId(),
-                        datum.getUsername(),
-                        datum.getPassword(),
-                        datum.getCreated(),
-                        datum.getModified(),
-                        datum.getGrade(),
-                        datum.getGradeName(),
-                        datum.getDepartment(),
-                        datum.getDepartmentname()
+                            datum.getId(),
+                            datum.getUsername(),
+                            datum.getPassword(),
+                            datum.getCreated(),
+                            datum.getModified(),
+                            datum.getGrade(),
+                            datum.getGradeName(),
+                            datum.getDepartment(),
+                            datum.getDepartmentname()
                     ));
                 }
                 uAdapter.notifyDataSetChanged();
@@ -94,15 +104,17 @@ public class FragmentUserList extends Fragment {
     /**
      * recyclerviewUserList display adapter
      */
-    public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+    public static class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
         final private List<ObjectUser> mUserList;
-        class UserViewHolder extends RecyclerView.ViewHolder {
+        static class UserViewHolder extends RecyclerView.ViewHolder {
+            final TextView tvId;
             final TextView tvUsername;
             final TextView tvCreated;
             final TextView tvGrade;
             final TextView tvDepartment;
             UserViewHolder(View userView) {
                 super(userView);
+                tvId = userView.findViewById(R.id.tvId);
                 tvUsername = userView.findViewById(R.id.tvUsername);
                 tvCreated = userView.findViewById(R.id.tvCreated);
                 tvGrade = userView.findViewById(R.id.tvGrade);
@@ -121,6 +133,7 @@ public class FragmentUserList extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull final UserViewHolder holder, int position) {
             final ObjectUser currentUser = mUserList.get(position);
+            holder.tvId.setText(String.valueOf(currentUser.getId()));
             holder.tvUsername.setText(currentUser.getUsername());
             holder.tvCreated.setText(currentUser.getCreated());
             holder.tvGrade.setText(currentUser.getGradeName());
