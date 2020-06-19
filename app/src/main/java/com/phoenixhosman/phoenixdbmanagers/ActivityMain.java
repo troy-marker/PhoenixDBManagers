@@ -1,12 +1,5 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.net.Uri;
@@ -17,14 +10,21 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import java.lang.reflect.Array;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static android.view.View.inflate;
-import static androidx.recyclerview.widget.RecyclerView.*;
+import static androidx.recyclerview.widget.RecyclerView.Adapter;
+import static androidx.recyclerview.widget.RecyclerView.inflate;
 import static java.util.Objects.requireNonNull;
+
+
 
 /**
  * Code for the main activity
@@ -35,25 +35,20 @@ import static java.util.Objects.requireNonNull;
 public class ActivityMain extends FragmentActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView sRecyclerView;
-    private Adapter mAdapter;
     private Adapter sAdapter;
-    private LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-    private LinearLayoutManager sLayoutManager = new LinearLayoutManager(this);
+    private final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+    private final LinearLayoutManager sLayoutManager = new LinearLayoutManager(this);
     private String strCoName;
     private String strApiUrl;
-    private String strLockPass;
-    private String strName;
-    private Integer intGrade;
     private String strGradename;
-    private Integer intDepartment;
-    private String strDepartmentname;
     private String strMenuName;
     private String strSubMenuName;
-    private ArrayList<ObjectMenu> MenuList = new ArrayList<>();
-    private ArrayList<ObjectSubMenu> objSubMenu = new ArrayList<>();
-    private ArrayList<ObjectMenu> SubmenuList = new ArrayList<>();
-    private FragmentBlank blank1 = new FragmentBlank();
-    private FragmentBlank blank2 = new FragmentBlank();
+    private Bundle bundle = new Bundle();
+    private final ArrayList<ObjectMenu> MenuList = new ArrayList<>();
+    private final ArrayList<ObjectSubMenu> objSubMenu = new ArrayList<>();
+    private final ArrayList<ObjectMenu> SubmenuList = new ArrayList<>();
+    private final FragmentBlank blank1 = new FragmentBlank();
+    private final FragmentBlank blank2 = new FragmentBlank();
 
     /**
      * Override of the parent onCreate method
@@ -73,7 +68,6 @@ public class ActivityMain extends FragmentActivity {
             while(!cursor.isAfterLast()) {
                 strCoName = cursor.getString(cursor.getColumnIndex("coname"));
                 strApiUrl = cursor.getString(cursor.getColumnIndex("apiurl"));
-                strLockPass = cursor.getString(cursor.getColumnIndex("lockpass"));
                 cursor.moveToNext();
             }
         } else {
@@ -83,11 +77,7 @@ public class ActivityMain extends FragmentActivity {
         assert cursor != null;
         if(cursor.moveToFirst()) {
             while(!cursor.isAfterLast()) {
-                strName = cursor.getString(cursor.getColumnIndex("name"));
-                intGrade = Integer.valueOf(cursor.getString(cursor.getColumnIndex("grade")));
                 strGradename = cursor.getString(cursor.getColumnIndex("gradename"));
-                intDepartment = Integer.valueOf(cursor.getString(cursor.getColumnIndex("department")));
-                strDepartmentname =cursor.getString(cursor.getColumnIndex("departmentname"));
                 cursor.moveToNext();
             }
 
@@ -102,7 +92,9 @@ public class ActivityMain extends FragmentActivity {
         sRecyclerView = findViewById(R.id.recyclerViewSubMenu);
         mRecyclerView.setHasFixedSize(true);
         sRecyclerView.setHasFixedSize(true);
-        mAdapter = new MenuAdapter(MenuList);
+        bundle.putString("CoName", strCoName);
+        bundle.putString("ApiUrl", strApiUrl);
+        Adapter mAdapter = new MenuAdapter(MenuList);
         sAdapter = new SubmenuAdapter(SubmenuList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         sRecyclerView.setLayoutManager(sLayoutManager);
@@ -127,7 +119,7 @@ public class ActivityMain extends FragmentActivity {
      * @param strError the error message to display
      */
     @SuppressWarnings ("SameParameterValue")
-    private void Error(String strError, Boolean exit) {
+    public void Error(String strError, Boolean exit) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View view = inflate(this, R.layout.dialog_error, null);
         Button btnExit = view.findViewById(R.id.buttonExitButton);
@@ -212,15 +204,14 @@ public class ActivityMain extends FragmentActivity {
                     holder.btnMenuItem.setSelected(false);
                     resetSubMenu(sRecyclerView);
                     SubmenuList.clear();
-                    sAdapter.notifyDataSetChanged();
                 } else {
                     resetMainMenu(mRecyclerView);
                     resetSubMenu(sRecyclerView);
                     holder.btnMenuItem.setSelected(true);
                     strMenuName = currentMenu.getName();
                     GetSubMenu(currentMenu.getName());
-                    sAdapter.notifyDataSetChanged();
                 }
+                sAdapter.notifyDataSetChanged();
             });
         }
         @Override
@@ -302,9 +293,7 @@ public class ActivityMain extends FragmentActivity {
      */
 
     private void CallFragment() {
-        Bundle bundle = new Bundle();
-        bundle.putString("CoName", strCoName);
-        bundle.putString("ApiUrl", strApiUrl);
+
         FragmentBlank blankFragment = new FragmentBlank();
         FragmentUserList userlistFragment = new FragmentUserList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
@@ -339,5 +328,17 @@ public class ActivityMain extends FragmentActivity {
                 }
                 break;
         }
+    }
+
+    public void ClearTopFrame() {
+        FragmentBlank blankFragment = new FragmentBlank();
+        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+        resetSubMenu(sRecyclerView);
+    }
+
+    public void LoadUserList() {
+        FragmentUserList userlistFragment = new FragmentUserList();
+        userlistFragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
     }
 }

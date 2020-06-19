@@ -12,7 +12,6 @@ import retrofit2.http.Path;
 public interface InterfaceAdminApi {
     /**
      * Gets the userlist
-     *
      * @return the current user list
      */
     @GET("user")
@@ -20,9 +19,23 @@ public interface InterfaceAdminApi {
 
     /**
      * Gets the grade list
-     *
      * @return the grade list
      */
     @GET("grade")
     Call<String> grade();
+
+    /**
+     * Gets the department list
+     * @return the department list
+     */
+    @GET("department")
+    Call<String> department();
+
+    @FormUrlEncoded
+    @POST("user")
+    Call<String> user(
+            @Field("username") String username,
+            @Field("passwored") String password,
+            @Field("grade") int grade,
+            @Field("department") int department );
 }

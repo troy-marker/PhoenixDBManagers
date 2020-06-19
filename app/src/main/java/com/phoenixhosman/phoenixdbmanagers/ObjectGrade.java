@@ -24,6 +24,9 @@ class ObjectGrade {
         this.grade = grade;
     }
 
+    /**
+     * Default Constructor
+     */
     ObjectGrade() {
 
     }

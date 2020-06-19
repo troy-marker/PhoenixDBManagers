@@ -25,6 +25,13 @@ class ObjectDepartment {
     }
 
     /**
+     * Default Constructor
+     */
+    ObjectDepartment() {
+
+    }
+
+    /**
      * Gets id.
      *
      * @return the id
@@ -34,12 +41,27 @@ class ObjectDepartment {
     }
 
     /**
-     * Gets department.
-     *
-     * @return the department
+     * Sets the department id
+     * @param value the department id
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
+
+    /**
+     * Gets department name
+     * @return the department name
      */
     String getDepartment() {
         return department;
+    }
+
+    /**
+     * Sets the department name
+     * @param value the department name
+     */
+    public void setDepartment(String value) {
+        this.department = value;
     }
 
     /**

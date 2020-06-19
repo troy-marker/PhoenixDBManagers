@@ -50,7 +50,7 @@ public class FragmentUserList extends Fragment {
         assert getArguments() != null;
         String coName = getArguments().getString("CoName");
         String apiUrl = getArguments().getString("ApiUrl");
-        managerAdminApi = new ManagerAdminApi(apiUrl);
+        managerAdminApi = new ManagerAdminApi(apiUrl, "GSON");
         RecyclerView uRecyclerView = view.findViewById(R.id.recyclerViewUserList);
         LinearLayoutManager uLayoutManager = new LinearLayoutManager(this.getActivity());
         uRecyclerView.setHasFixedSize(true);
@@ -71,7 +71,7 @@ public class FragmentUserList extends Fragment {
      * Method to read the user list from the database
      */
 
-    private void readUsers() {
+    public void readUsers() {
         userList.clear();
         managerAdminApi.user(new Callback<ObjectUserResponse>() {
             @Override
