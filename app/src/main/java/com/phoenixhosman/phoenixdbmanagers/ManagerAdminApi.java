@@ -31,7 +31,7 @@ class ManagerAdminApi {
     ManagerAdminApi(String strApiUrl, String factory) {
         ApiUrl = strApiUrl;
         String BASE_URL = ApiUrl;
-        this.factory = factory;
+        ManagerAdminApi.factory = factory;
         Retrofit retrofit;
         switch (factory) {
             case "SCALARS":
@@ -53,7 +53,8 @@ class ManagerAdminApi {
     }
 
     @SuppressWarnings("unused")
-    static synchronized ManagerAdminApi getInstance() {
+    public ManagerAdminApi getInstance() {
+    //static synchronized ManagerAdminApi getInstance() {
         if (managerAdminApi == null) {
             managerAdminApi = new ManagerAdminApi(ApiUrl,factory );
         }

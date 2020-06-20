@@ -5,30 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import static android.R.layout.simple_spinner_item;
-import static android.view.View.inflate;
 
 /**
  * User Add Fragment code file
@@ -36,7 +29,7 @@ import static android.view.View.inflate;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class FragmentUserAdd extends Fragment implements OnClickListener {
+public class FragmentUserAdd extends Fragment implements OnClickListener, android.widget.AdapterView.OnItemSelectedListener {
 
     //ManagerAdminApi managerAdminApi;
     String apiUrl;
@@ -50,7 +43,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
     int departmentIndex;
     private final ArrayList<String> gradeNames = new ArrayList<>();
     private final ArrayList<String> departmentNames = new ArrayList<>();
-    private final FragmentBlank blank1 = new FragmentBlank();
+
 
     public FragmentUserAdd()  {
     }
@@ -68,7 +61,6 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
         assert getArguments() != null;
         String coName = getArguments().getString("CoName");
         apiUrl = getArguments().getString("ApiUrl");
-
         btnAddUser = view.findViewById(R.id.btnAddUser);
         btnCancel = view.findViewById(R.id.btnCancel);
         etUsername = view.findViewById(R.id.etUsername);
@@ -79,33 +71,10 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
         departmentIndex = 0;
         btnAddUser.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
-        gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gradeIndex = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        departmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                departmentIndex = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
+        gradeSpinner.setOnItemSelectedListener(this);
+        departmentSpinner.setOnItemSelectedListener(this);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setText(getString(R.string.user_add_title, coName));
-
-
         readGrades();
         readDepartments();
         return view;
@@ -125,18 +94,18 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
                     displayGrades(jsonresponse);
                 } else {
                     Toast.makeText(getContext(),"Failed loading Grade List", Toast.LENGTH_LONG).show();
-
                 }
-
             }
-
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-
             }
         });
     }
 
+    /**
+     * Method to load the grades into the  grades spinner
+     * @param response JSON Object containing the Api response
+     */
     private void displayGrades(String response){
         try {
             JSONObject obj = new JSONObject(response);
@@ -157,13 +126,15 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
                 ArrayAdapter<String> gradeArrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), simple_spinner_item, gradeNames);
                 gradeArrayAdapter.setDropDownViewResource(android.R.layout.simple_selectable_list_item);
                 gradeSpinner.setAdapter(gradeArrayAdapter);
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Method to load the department list from the database
+     */
     public void readDepartments() {
         ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl, "SCALARS");
         managerAdminApi.department(new Callback<String>() {
@@ -174,18 +145,18 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
                     displayDepartments(jsonresponse);
                 } else {
                     Toast.makeText(getContext(),"Failed loading Department List", Toast.LENGTH_LONG).show();
-
                 }
-
             }
-
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-
             }
         });
     }
 
+    /**
+     * Method to load the grades into the  grades spinner
+     * @param response JSON Object containing the Api response
+     */
     private void displayDepartments(String response){
         try {
             JSONObject obj = new JSONObject(response);
@@ -212,6 +183,10 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
         }
     }
 
+    /**
+     * onClick listener
+     * @param v the view triggering the action
+     */
     @Override
     public void onClick(View v) {
         ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl, "SCALARS");
@@ -236,24 +211,61 @@ public class FragmentUserAdd extends Fragment implements OnClickListener {
                                 call.enqueue(new Callback<String>() {
                                     @Override
                                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                                        if (response.isSuccessful()) {
-                                            Toast.makeText(getContext(), "User successfully created", Toast.LENGTH_LONG).show();
-                                            ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
-                                        } else {
-                                            Toast.makeText(getContext(),"User not created", Toast.LENGTH_LONG).show();
-                                        }
+                                        String body = response.body();
+                                            try {
+                                                assert body != null;
+                                                JSONObject obj = new JSONObject(body);
+                                                if (obj.optString("success").equals("false")) {
+                                                    Toast.makeText(getContext(),obj.optString("message"), Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(getContext(), "User successfully created", Toast.LENGTH_LONG).show();
+                                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
                                     }
-
                                     @Override
                                     public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-
                                     }
                                 });
                             }
                         }
                     }
                 }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 
+    /**
+     * Callback method to be invoked when an item in the spinner has been selected.
+     * @param parent AdapterView: The AdapterView where the selection happened
+     * @param view View: The view within the AdapterView that was clicked
+     * @param position int: The position of the view in the adapter
+     * @param id long: The row id of the item that is selected
+     */
+    @Override
+    public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+        switch (parent.getId()) {
+            case R.id.gradeSpinner:
+                gradeIndex = position;
+                break;
+            case R.id.departmentSpinner:
+                departmentIndex = position;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + view.getId());
+        }
+    }
+
+    /**
+     * Callback method to be invoked when the selection disappears from this view.
+     * @param parent AdapterView: The AdapterView that now contains no selected item.
+     */
+    @Override
+    public void onNothingSelected(android.widget.AdapterView<?> parent) {
+
+    }
 }

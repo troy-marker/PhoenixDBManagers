@@ -3,9 +3,11 @@
     <string name="blank"> </string>
     <string name="created">Created</string>
     <string name="department">Department: </string>
+    <string name="department_1">Department</string>
     <string name="error">ERROR: %1$s</string>
     <string name="exit">CLOSE</string>
     <string name="grade">Grade: </string>
+    <string name="grade_1">Grade</string>
     <string name="phoenix_logo">Phoenix Logo</string>
     <string name="select">Select</string>
     <string name="user_add_title">%1$s Add User</string>

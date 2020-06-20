@@ -35,7 +35,7 @@ public interface InterfaceAdminApi {
     @POST("user")
     Call<String> user(
             @Field("username") String username,
-            @Field("passwored") String password,
+            @Field("password") String password,
             @Field("grade") int grade,
             @Field("department") int department );
 }

@@ -3,7 +3,7 @@
     <item>
         <layer-list>
             <item>
-                <bitmap android:gravity="right|center" android:src="@drawable/p_phoenix_spinner" />
+                <bitmap android:gravity="right|center" android:src="@drawable/w_phoenix_spinner" />
             </item>
         </layer-list>
     </item>
