@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -50,7 +51,7 @@ public class FragmentUserList extends Fragment {
         assert getArguments() != null;
         String coName = getArguments().getString("CoName");
         String apiUrl = getArguments().getString("ApiUrl");
-        managerAdminApi = new ManagerAdminApi(apiUrl, "GSON");
+        managerAdminApi = new ManagerAdminApi(apiUrl);
         RecyclerView uRecyclerView = view.findViewById(R.id.recyclerViewUserList);
         LinearLayoutManager uLayoutManager = new LinearLayoutManager(this.getActivity());
         uRecyclerView.setHasFixedSize(true);
@@ -66,37 +67,42 @@ public class FragmentUserList extends Fragment {
     /**
      * Method to read the user list from the database
      */
-
-    /**
-     * Method to read the user list from the database
-     */
-
     public void readUsers() {
         userList.clear();
-        managerAdminApi.user(new Callback<ObjectUserResponse>() {
+        Call<String> call = ManagerAdminApi.getInstance().getApi().user();
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(@NonNull Call<ObjectUserResponse> call, @NonNull Response<ObjectUserResponse> response) {
-                ObjectUserResponse JsonList = response.body();
-                assert JsonList != null;
-                ObjectUser[] data = JsonList.getData();
-                for (int i = 0, dataLength = data.length; i < dataLength; i++) {
-                    ObjectUser datum = data[i];
-                    userList.add(new ObjectUser(
-                            datum.getId(),
-                            datum.getUsername(),
-                            datum.getPassword(),
-                            datum.getCreated(),
-                            datum.getModified(),
-                            datum.getGrade(),
-                            datum.getGradeName(),
-                            datum.getDepartment(),
-                            datum.getDepartmentname()
-                    ));
-                }
-                uAdapter.notifyDataSetChanged();
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                String body = response.body();
+                    try {
+                        assert body != null;
+                        JSONObject obj = new JSONObject(body);
+                        if(obj.optString("success").equals("true")) {
+                            JSONArray data = obj.getJSONArray("data");
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject datum = data.getJSONObject(i);
+                                userList.add(new ObjectUser(
+                                        datum.getInt("id"),
+                                        datum.getString("username"),
+                                        datum.getString("password"),
+                                        datum.getString("created"),
+                                        datum.getString("modified"),
+                                        datum.getInt("grade"),
+                                        datum.getString("gradename"),
+                                        datum.getInt("department"),
+                                        datum.getString("departmentname")
+                                ));
+                            }
+                            uAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getContext(), obj.optString("message"), Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
             }
             @Override
-            public void onFailure(@NonNull Call<ObjectUserResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
             }
         });
     }

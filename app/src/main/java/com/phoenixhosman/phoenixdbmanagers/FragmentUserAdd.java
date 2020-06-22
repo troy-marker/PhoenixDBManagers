@@ -85,7 +85,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
      */
 
     private void readGrades() {
-        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl, "SCALARS");
+        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl);
         managerAdminApi.grade(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -136,7 +136,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
      * Method to load the department list from the database
      */
     public void readDepartments() {
-        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl, "SCALARS");
+        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl);
         managerAdminApi.department(new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -189,7 +189,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
      */
     @Override
     public void onClick(View v) {
-        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl, "SCALARS");
+        ManagerAdminApi managerAdminApi = new ManagerAdminApi(apiUrl);
         switch(v.getId()) {
             case R.id.btnCancel:
                 ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
@@ -207,7 +207,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
                             if (departmentIndex == 0) {
                                 ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Select a department", false);
                             } else {
-                                Call<String> call = managerAdminApi.getInstance().getApi().user(etUsername.getText().toString(), etPassword.getText().toString(), gradeIndex, departmentIndex);
+                                Call<String> call = ManagerAdminApi.getInstance().getApi().user(etUsername.getText().toString(), etPassword.getText().toString(), gradeIndex, departmentIndex);
                                 call.enqueue(new Callback<String>() {
                                     @Override
                                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {

@@ -15,7 +15,7 @@ public interface InterfaceAdminApi {
      * @return the current user list
      */
     @GET("user")
-    Call<ObjectUserResponse> user();
+    Call<String> user();
 
     /**
      * Gets the grade list
