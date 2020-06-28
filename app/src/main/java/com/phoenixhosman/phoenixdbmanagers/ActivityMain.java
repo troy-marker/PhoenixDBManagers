@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -32,7 +33,7 @@ import static java.util.Objects.requireNonNull;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class ActivityMain extends FragmentActivity {
+public class ActivityMain extends FragmentActivity implements InterfaceDataPasser {
     private RecyclerView mRecyclerView;
     private RecyclerView sRecyclerView;
     private Adapter sAdapter;
@@ -40,10 +41,12 @@ public class ActivityMain extends FragmentActivity {
     private final LinearLayoutManager sLayoutManager = new LinearLayoutManager(this);
     private String strCoName;
     private String strApiUrl;
+    private Integer intRecord;
     private String strGradename;
     private String strMenuName;
     private String strSubMenuName;
-    private Bundle bundle = new Bundle();
+    private Button btnExitButton;
+    private Bundle args = new Bundle();
     private final ArrayList<ObjectMenu> MenuList = new ArrayList<>();
     private final ArrayList<ObjectSubMenu> objSubMenu = new ArrayList<>();
     private final ArrayList<ObjectMenu> SubmenuList = new ArrayList<>();
@@ -92,14 +95,16 @@ public class ActivityMain extends FragmentActivity {
         sRecyclerView = findViewById(R.id.recyclerViewSubMenu);
         mRecyclerView.setHasFixedSize(true);
         sRecyclerView.setHasFixedSize(true);
-        bundle.putString("CoName", strCoName);
-        bundle.putString("ApiUrl", strApiUrl);
+        args.putString("CoName", strCoName);
+        args.putString("ApiUrl", strApiUrl);
         Adapter mAdapter = new MenuAdapter(MenuList);
         sAdapter = new SubmenuAdapter(SubmenuList);
         mRecyclerView.setLayoutManager(mLayoutManager);
         sRecyclerView.setLayoutManager(sLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         sRecyclerView.setAdapter(sAdapter);
+        btnExitButton = findViewById(R.id.btnExitButton);
+        btnExitButton.setOnClickListener(v -> finishAndRemoveTask());
         if (findViewById(R.id.topFrame) != null) {
             if (savedInstanceState != null) {
                 return;
@@ -169,6 +174,8 @@ public class ActivityMain extends FragmentActivity {
             }
         }
     }
+
+
 
     /**
      * The Main Menu Recycler View Adapter
@@ -297,21 +304,31 @@ public class ActivityMain extends FragmentActivity {
         FragmentBlank blankFragment = new FragmentBlank();
         FragmentUserList userlistFragment = new FragmentUserList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
+
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
                     case "List":
                         getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
-                        userlistFragment.setArguments(bundle);
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        userlistFragment.setArguments(args);
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
                     case "Add":
-                        useraddFragment.setArguments(bundle);
+                        useraddFragment.setArguments(args);
                         getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, useraddFragment).commit();
-                        userlistFragment.setArguments(bundle);
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        userlistFragment.setArguments(args);
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
                     case "Update":
+                        args.putBoolean("update", true);
+                        args.putBoolean("remove", false);
+                        userlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
+                        break;
                     case "Remove":
                 }
                 break;
@@ -338,7 +355,24 @@ public class ActivityMain extends FragmentActivity {
 
     public void LoadUserList() {
         FragmentUserList userlistFragment = new FragmentUserList();
-        userlistFragment.setArguments(bundle);
+        userlistFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
     }
+
+    @Override
+    public void onUpdate(int id) {
+        FragmentUserUpdate userupdateFragment = new FragmentUserUpdate();
+        args.putString("ApiUrl", strApiUrl);
+        args.putString("CoName", strCoName);
+        args.putInt("record", id);
+        userupdateFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userupdateFragment).commit();
+    }
+
+    @Override
+    public void onRemove(int id) {
+
+    }
+
+
 }

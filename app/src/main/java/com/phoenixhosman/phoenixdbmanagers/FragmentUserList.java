@@ -1,21 +1,20 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -29,10 +28,10 @@ import retrofit2.Response;
  * @version 1.0.0
  */
 public class FragmentUserList extends Fragment {
-    private ManagerAdminApi managerAdminApi;
     private RecyclerView.Adapter uAdapter;
+    static InterfaceDataPasser dataPasser;
+    public static Boolean update;
     private final ArrayList<ObjectUser> userList = new ArrayList<>();
-
 
     public FragmentUserList() {
     }
@@ -51,7 +50,8 @@ public class FragmentUserList extends Fragment {
         assert getArguments() != null;
         String coName = getArguments().getString("CoName");
         String apiUrl = getArguments().getString("ApiUrl");
-        managerAdminApi = new ManagerAdminApi(apiUrl);
+        update = getArguments().getBoolean("update");
+        new ManagerAdminApi(apiUrl);
         RecyclerView uRecyclerView = view.findViewById(R.id.recyclerViewUserList);
         LinearLayoutManager uLayoutManager = new LinearLayoutManager(this.getActivity());
         uRecyclerView.setHasFixedSize(true);
@@ -112,6 +112,7 @@ public class FragmentUserList extends Fragment {
      */
     public static class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
         final private List<ObjectUser> mUserList;
+
         static class UserViewHolder extends RecyclerView.ViewHolder {
             final TextView tvId;
             final TextView tvUsername;
@@ -140,14 +141,24 @@ public class FragmentUserList extends Fragment {
         public void onBindViewHolder(@NonNull final UserViewHolder holder, int position) {
             final ObjectUser currentUser = mUserList.get(position);
             holder.tvId.setText(String.valueOf(currentUser.getId()));
+            if (update) {
+                holder.tvId.setTextColor(Color.parseColor("#06F522"));
+            }
             holder.tvUsername.setText(currentUser.getUsername());
             holder.tvCreated.setText(currentUser.getCreated());
             holder.tvGrade.setText(currentUser.getGradeName());
             holder.tvDepartment.setText(currentUser.getDepartmentname());
+            holder.tvId.setOnClickListener(v -> dataPasser.onUpdate(currentUser.getId()));
         }
         @Override
         public int getItemCount() {
             return mUserList.size();
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        dataPasser = (InterfaceDataPasser) context;
     }
 }

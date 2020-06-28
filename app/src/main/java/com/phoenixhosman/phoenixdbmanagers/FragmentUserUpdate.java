@@ -1,26 +1,32 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 import static android.R.layout.simple_spinner_item;
 
 /**
@@ -29,22 +35,23 @@ import static android.R.layout.simple_spinner_item;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class FragmentUserAdd extends Fragment implements OnClickListener, android.widget.AdapterView.OnItemSelectedListener {
-
+public class FragmentUserUpdate extends Fragment implements View.OnClickListener, android.widget.AdapterView.OnItemSelectedListener {
     String apiUrl;
-    Button btnAddUser;
+    String coName;
+    Integer record;
+    Button btnUpdateUser;
     Button btnCancel;
     EditText etUsername;
-    EditText etPassword;
     Spinner gradeSpinner;
     Spinner departmentSpinner;
     int gradeIndex;
     int departmentIndex;
+
     private final ArrayList<String> gradeNames = new ArrayList<>();
     private final ArrayList<String> departmentNames = new ArrayList<>();
 
+    public FragmentUserUpdate() {
 
-    public FragmentUserAdd()  {
     }
 
     /**
@@ -56,36 +63,94 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
      * @return View object container the fragment view
      */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_add, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_update, container, false);
         assert getArguments() != null;
-        String coName = getArguments().getString("CoName");
+        coName = getArguments().getString("CoName");
         apiUrl = getArguments().getString("ApiUrl");
-        btnAddUser = view.findViewById(R.id.btnAddUser);
+        record = getArguments().getInt("record");
+        btnUpdateUser = view.findViewById(R.id.btnUpdateUser);
         btnCancel = view.findViewById(R.id.btnCancel);
         etUsername = view.findViewById(R.id.etUsername);
-        etPassword = view.findViewById(R.id.etPassword);
         gradeSpinner = view.findViewById(R.id.gradeSpinner);
         departmentSpinner = view.findViewById(R.id.departmentSpinner);
+        gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                gradeIndex = (int) gradeSpinner.getSelectedItemId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        departmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                departmentIndex = (int) departmentSpinner.getSelectedItemId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         new ManagerAdminApi(apiUrl);
         gradeIndex = 0;
         departmentIndex = 0;
-        btnAddUser.setOnClickListener(this);
+        btnUpdateUser.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
+        etUsername.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         gradeSpinner.setOnItemSelectedListener(this);
         departmentSpinner.setOnItemSelectedListener(this);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.user_add_title, coName));
+        tvTitle.setText(getString(R.string.user_update_title, coName));
         readGrades();
         readDepartments();
+        readUser();
         return view;
     }
 
     /**
+     * Method to read a user from the database
+    */
+    private void readUser() {
+        Call<String> call = ManagerAdminApi.getInstance().getApi().user(record);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                if (response.isSuccessful()) {
+                    try {
+                        assert response.body() != null;
+                        JSONObject obj = new JSONObject(response.body());
+                        if(obj.optString("success").equals("true")) {
+                            JSONObject dataObject = obj.getJSONObject("data");
+                            gradeIndex = Integer.parseInt(dataObject.getString("grade"));
+                            departmentIndex = Integer.parseInt(dataObject.getString("department"));
+                            DisplayUser(dataObject.getString("username"));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(getContext(),"Failed loading user information", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+            }
+        });
+    }
+
+    public void DisplayUser(String username) {
+        etUsername.setText(username);
+        gradeSpinner.setSelection(gradeIndex);
+        departmentSpinner.setSelection(departmentIndex);
+    }
+    /**
      * Method to read the Grade List from the database
      */
-
     private void readGrades() {
-
         Call<String> call = ManagerAdminApi.getInstance().getApi().grade();
         call.enqueue(new Callback<String>() {
             @Override
@@ -184,53 +249,46 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
         }
     }
 
-    /**
-     * onClick listener
-     * @param v the view triggering the action
-     */
+
+
     @Override
     public void onClick(View v) {
-
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.btnCancel:
                 ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                 break;
-            case R.id.btnAddUser:
+            case R.id.btnUpdateUser:
                 if (etUsername.getText().toString().isEmpty()) {
                     ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A username is required", false);
                 } else {
-                    if (etPassword.getText().toString().isEmpty()) {
-                        ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A password is required", false);
+                    if (gradeSpinner.getSelectedItemId() == 0) {
+                        ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Select a  grade", false);
                     } else {
-                        if (gradeIndex == 0) {
-                            ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Select a grade", false);
+                        if(departmentSpinner.getSelectedItemId() == 0) {
+                            ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Select a department", false);
                         } else {
-                            if (departmentIndex == 0) {
-                                ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Select a department", false);
-                            } else {
-                                Call<String> call = ManagerAdminApi.getInstance().getApi().user(etUsername.getText().toString(), etPassword.getText().toString(), gradeIndex, departmentIndex);
-                                call.enqueue(new Callback<String>() {
-                                    @Override
-                                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                                        String body = response.body();
-                                            try {
-                                                assert body != null;
-                                                JSONObject obj = new JSONObject(body);
-                                                if (obj.optString("success").equals("false")) {
-                                                    Toast.makeText(getContext(),obj.optString("message"), Toast.LENGTH_LONG).show();
-                                                } else {
-                                                    Toast.makeText(getContext(), "User successfully created", Toast.LENGTH_LONG).show();
-                                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
-                                                }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
+                            Call<String> call = ManagerAdminApi.getInstance().getApi().ruser(record, etUsername.getText().toString(), (int)gradeSpinner.getSelectedItemId(), (int)departmentSpinner.getSelectedItemId());
+                            call.enqueue(new Callback<String>() {
+                                @Override
+                                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                                    String body = response.body();
+                                    try {
+                                        assert body != null;
+                                        JSONObject obj = new JSONObject(body);
+                                        if (obj.optString("success").equals("false")) {
+                                            Toast.makeText(getContext(),obj.optString("message"), Toast.LENGTH_LONG).show();
+                                        } else {
+                                            Toast.makeText(getContext(), "User successfully updated", Toast.LENGTH_LONG).show();
+                                            ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
+                                        }
+                                    } catch (JSONException e) {
+                                        //e.printStackTrace();
                                     }
-                                    @Override
-                                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                                    }
-                                });
-                            }
+                                }
+                                @Override
+                                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                }
+                            });
                         }
                     }
                 }
@@ -240,33 +298,16 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
         }
     }
 
-    /**
-     * Callback method to be invoked when an item in the spinner has been selected.
-     * @param parent AdapterView: The AdapterView where the selection happened
-     * @param view View: The view within the AdapterView that was clicked
-     * @param position int: The position of the view in the adapter
-     * @param id long: The row id of the item that is selected
-     */
     @Override
-    public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()) {
-            case R.id.gradeSpinner:
-                gradeIndex = position;
-                break;
-            case R.id.departmentSpinner:
-                departmentIndex = position;
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + view.getId());
-        }
-    }
-
-    /**
-     * Callback method to be invoked when the selection disappears from this view.
-     * @param parent AdapterView: The AdapterView that now contains no selected item.
-     */
-    @Override
-    public void onNothingSelected(android.widget.AdapterView<?> parent) {
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
 }

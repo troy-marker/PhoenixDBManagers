@@ -21,27 +21,9 @@ class ManagerAdminApi {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        //switch (factory) {
-        //    case "SCALARS":
-        //        retrofit = new Retrofit.Builder()
-        //                .baseUrl(BASE_URL)
-        //                .addConverterFactory(ScalarsConverterFactory.create())
-        //                .build();
-        //        break;
-        //    case "GSON":
-        //        retrofit = new Retrofit.Builder()
-        //                .baseUrl(BASE_URL)
-        //                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
-        //                .build();
-        //        break;
-        //    default:
-        //        throw new IllegalStateException("Unexpected value: " + factory);
-        //}
         service = retrofit.create(InterfaceAdminApi.class);
     }
 
-    @SuppressWarnings("unused")
-    //public ManagerAdminApi getInstance() {
     static synchronized ManagerAdminApi getInstance() {
         if (managerAdminApi == null) {
             managerAdminApi = new ManagerAdminApi(ApiUrl);
@@ -49,14 +31,8 @@ class ManagerAdminApi {
         return managerAdminApi;
     }
 
-    @SuppressWarnings("unused")
     InterfaceAdminApi getApi() {
         return service;
-    }
-
-    void user(Callback<String> callback) {
-        Call<String> getusersCall = service.user();
-        getusersCall.enqueue(callback);
     }
 
     /**

@@ -6,13 +6,15 @@
     <string name="department_1">Department</string>
     <string name="error">ERROR: %1$s</string>
     <string name="exit">CLOSE</string>
+    <string name="exit_1">EXIT</string>
     <string name="grade">Grade: </string>
     <string name="grade_1">Grade</string>
     <string name="phoenix_logo">Phoenix Logo</string>
     <string name="select">Select</string>
     <string name="user_add_title">%1$s Add User</string>
     <string name="user_list_title">%1$s User List</string>
-
+    <string name="user_update_title">%1$s Update User</string>
+    <string name="update_user">Update User</string>
     <string name="username">Username: </string>
     <string name="password">Password:</string>
     <string name="add_user">Add User</string>
