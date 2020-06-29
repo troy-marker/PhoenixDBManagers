@@ -1,22 +1,26 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    Admin API Manager Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
-//import com.google.gson.GsonBuilder;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 class ManagerAdminApi {
     private static InterfaceAdminApi service;
     private static ManagerAdminApi managerAdminApi;
-    //private static String factory;
     private static String ApiUrl;
 
     ManagerAdminApi(String strApiUrl) {
         ApiUrl = strApiUrl;
         String BASE_URL = ApiUrl;
-        //ManagerAdminApi.factory = factory;
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -34,23 +38,4 @@ class ManagerAdminApi {
     InterfaceAdminApi getApi() {
         return service;
     }
-
-    /**
-     * Gets all grade in the database
-     * @param callback the callback function
-     */
-    void grade(Callback<String> callback) {
-        Call<String> gradeListCall = service.grade();
-        gradeListCall.enqueue(callback);
-    }
-
-    /**
-     * Gets all departments in the database
-     * @param callback the callback function
-     */
-    void department(Callback<String> callback) {
-        Call<String> departmentListCall = service.department();
-        departmentListCall.enqueue(callback);
-    }
-
 }

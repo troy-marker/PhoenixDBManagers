@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    Settings Content Provider Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.content.ContentProvider;
@@ -11,15 +21,13 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * The type Provider settings.
+ * The settings content provider.
  */
 public class ProviderSettings extends ContentProvider {
 
@@ -108,7 +116,7 @@ public class ProviderSettings extends ContentProvider {
     private static final String TABLE_NAME = "Settings";
     private static final int DATABASE_VERSION = 1;
     private static final String CREATE_DB_TABLE = " CREATE TABLE " + TABLE_NAME
-            + " (id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + " (" + id + "INTEGER PRIMARY KEY AUTOINCREMENT, "
             + coname + " TEXT NOT NULL, "
             + coaddress  + " TEXT NOT NULL, "
             + cocity + " TEXT NOT NULL, "

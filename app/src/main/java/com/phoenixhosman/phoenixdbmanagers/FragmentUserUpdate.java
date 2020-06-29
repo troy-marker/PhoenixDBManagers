@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    User Upodate Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.os.Bundle;
@@ -12,22 +22,18 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Objects;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import static android.R.layout.simple_spinner_item;
+import static android.widget.AdapterView.*;
 
 /**
  * User Add Fragment code file
@@ -35,7 +41,7 @@ import static android.R.layout.simple_spinner_item;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class FragmentUserUpdate extends Fragment implements View.OnClickListener, android.widget.AdapterView.OnItemSelectedListener {
+public class FragmentUserUpdate extends Fragment implements OnClickListener {
     String apiUrl;
     String coName;
     Integer record;
@@ -46,12 +52,10 @@ public class FragmentUserUpdate extends Fragment implements View.OnClickListener
     Spinner departmentSpinner;
     int gradeIndex;
     int departmentIndex;
-
     private final ArrayList<String> gradeNames = new ArrayList<>();
     private final ArrayList<String> departmentNames = new ArrayList<>();
 
     public FragmentUserUpdate() {
-
     }
 
     /**
@@ -73,36 +77,12 @@ public class FragmentUserUpdate extends Fragment implements View.OnClickListener
         etUsername = view.findViewById(R.id.etUsername);
         gradeSpinner = view.findViewById(R.id.gradeSpinner);
         departmentSpinner = view.findViewById(R.id.departmentSpinner);
-        gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gradeIndex = (int) gradeSpinner.getSelectedItemId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        departmentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                departmentIndex = (int) departmentSpinner.getSelectedItemId();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         new ManagerAdminApi(apiUrl);
         gradeIndex = 0;
         departmentIndex = 0;
         btnUpdateUser.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         etUsername.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-        gradeSpinner.setOnItemSelectedListener(this);
-        departmentSpinner.setOnItemSelectedListener(this);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setText(getString(R.string.user_update_title, coName));
         readGrades();
@@ -142,11 +122,16 @@ public class FragmentUserUpdate extends Fragment implements View.OnClickListener
         });
     }
 
+    /**
+     * Method to display user being updates
+     * @param username The user's username
+     */
     public void DisplayUser(String username) {
         etUsername.setText(username);
         gradeSpinner.setSelection(gradeIndex);
         departmentSpinner.setSelection(departmentIndex);
     }
+
     /**
      * Method to read the Grade List from the database
      */
@@ -249,8 +234,10 @@ public class FragmentUserUpdate extends Fragment implements View.OnClickListener
         }
     }
 
-
-
+    /**
+     * The onClick handler
+     * @param v the view being clicked
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -297,17 +284,4 @@ public class FragmentUserUpdate extends Fragment implements View.OnClickListener
                 throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
-
-
 }

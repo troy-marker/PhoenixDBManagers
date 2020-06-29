@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    User Addition Fragment Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.os.Bundle;

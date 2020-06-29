@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    SubMenu Object Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 public class ObjectSubMenu {
@@ -11,7 +21,6 @@ public class ObjectSubMenu {
     private String mParent;
     /**
      * Class constructor
-     *
      * @param parent The name of the parent menu
      * @param name The menu name
      */
@@ -21,7 +30,6 @@ public class ObjectSubMenu {
     }
     /**
      * Get the parent name
-     *
      * @return Sting - the menu items parent
      */
     String getParent() {
@@ -29,7 +37,6 @@ public class ObjectSubMenu {
     }
     /**
      * Get the menu name
-     *
      * @return String - the menu name
      */
     public String getName() {

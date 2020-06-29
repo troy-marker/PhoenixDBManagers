@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    Main Activity Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.annotation.SuppressLint;
@@ -9,18 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
 import static androidx.recyclerview.widget.RecyclerView.Adapter;
 import static androidx.recyclerview.widget.RecyclerView.inflate;
 import static java.util.Objects.requireNonNull;
@@ -41,12 +47,11 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     private final LinearLayoutManager sLayoutManager = new LinearLayoutManager(this);
     private String strCoName;
     private String strApiUrl;
-    private Integer intRecord;
+
     private String strGradename;
     private String strMenuName;
     private String strSubMenuName;
-    private Button btnExitButton;
-    private Bundle args = new Bundle();
+    private final Bundle args = new Bundle();
     private final ArrayList<ObjectMenu> MenuList = new ArrayList<>();
     private final ArrayList<ObjectSubMenu> objSubMenu = new ArrayList<>();
     private final ArrayList<ObjectMenu> SubmenuList = new ArrayList<>();
@@ -103,7 +108,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         sRecyclerView.setLayoutManager(sLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         sRecyclerView.setAdapter(sAdapter);
-        btnExitButton = findViewById(R.id.btnExitButton);
+        Button btnExitButton = findViewById(R.id.btnExitButton);
         btnExitButton.setOnClickListener(v -> finishAndRemoveTask());
         if (findViewById(R.id.topFrame) != null) {
             if (savedInstanceState != null) {
