@@ -14,7 +14,7 @@
         android:textAllCaps="true" />
     <TextView
         android:id="@+id/tvUsername"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/x_border_1"
         android:gravity="center"

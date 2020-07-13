@@ -1,3 +1,13 @@
+/*
+    The Phoenix Hospitality Management System
+    Database Manager App
+    User List Fragment Code File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+ */
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.content.Context;
@@ -31,6 +41,7 @@ public class FragmentUserList extends Fragment {
     private RecyclerView.Adapter uAdapter;
     static InterfaceDataPasser dataPasser;
     public static Boolean update;
+    public static Boolean remove;
     private final ArrayList<ObjectUser> userList = new ArrayList<>();
 
     public FragmentUserList() {
@@ -51,6 +62,7 @@ public class FragmentUserList extends Fragment {
         String coName = getArguments().getString("CoName");
         String apiUrl = getArguments().getString("ApiUrl");
         update = getArguments().getBoolean("update");
+        remove = getArguments().getBoolean("remove");
         new ManagerAdminApi(apiUrl);
         RecyclerView uRecyclerView = view.findViewById(R.id.recyclerViewUserList);
         LinearLayoutManager uLayoutManager = new LinearLayoutManager(this.getActivity());
@@ -144,11 +156,19 @@ public class FragmentUserList extends Fragment {
             if (update) {
                 holder.tvId.setTextColor(Color.parseColor("#06F522"));
             }
+            if (remove) {
+                holder.tvId.setTextColor(Color.parseColor("#FF2579"));
+            }
             holder.tvUsername.setText(currentUser.getUsername());
             holder.tvCreated.setText(currentUser.getCreated());
             holder.tvGrade.setText(currentUser.getGradeName());
             holder.tvDepartment.setText(currentUser.getDepartmentname());
-            holder.tvId.setOnClickListener(v -> dataPasser.onUpdate(currentUser.getId()));
+            if (update) {
+                holder.tvId.setOnClickListener(v -> dataPasser.onUserUpdate(currentUser.getId()));
+            }
+            if (remove) {
+                holder.tvId.setOnClickListener(v -> dataPasser.onUserRemove(currentUser.getId()));
+            }
         }
         @Override
         public int getItemCount() {

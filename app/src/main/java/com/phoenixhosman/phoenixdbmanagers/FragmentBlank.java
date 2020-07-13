@@ -1,7 +1,7 @@
 /*
     The Phoenix Hospitality Management System
     Database Manager App
-    Main Activity Code File
+    Blank Fragment Code File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
@@ -25,7 +25,6 @@ import java.util.Objects;
 
 /**
  * Code for the blank screen fragment
- *
  * @author Troy Marker
  * @version 1.0.0
  */

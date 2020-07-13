@@ -42,6 +42,7 @@ public class ProviderSettings extends ContentProvider {
     static final String cozip = "cozip";
     static final String apiurl = "apiurl";
     static final String lockpass = "lockpass";
+    static final String apikey = "apikey";
     private static final int uriCode = 1;
     private static final UriMatcher uriMatcher;
     private static final HashMap<String, String> values = null;
@@ -123,7 +124,8 @@ public class ProviderSettings extends ContentProvider {
             + costate + " TEXT NOT NULL,"
             + cozip + " TEXT NOT NULL,"
             + apiurl + " TEXT NOT NULL,"
-            + lockpass + " TEXT NOT NULL);";
+            + lockpass + " TEXT NOT NULL,"
+            + apikey + " TEXT NOT NULL);";
 
     private static class DatabaseHelper extends SQLiteOpenHelper {
         DatabaseHelper(Context context) {

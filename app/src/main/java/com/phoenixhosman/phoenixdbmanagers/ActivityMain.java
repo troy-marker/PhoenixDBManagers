@@ -31,11 +31,8 @@ import static androidx.recyclerview.widget.RecyclerView.Adapter;
 import static androidx.recyclerview.widget.RecyclerView.inflate;
 import static java.util.Objects.requireNonNull;
 
-
-
 /**
  * Code for the main activity
- *
  * @author Troy Marker
  * @version 1.0.0
  */
@@ -60,7 +57,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     /**
      * Override of the parent onCreate method
-     *
      * @param savedInstanceState The current instance state
      */
     @SuppressLint("Recycle")
@@ -88,7 +84,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                 strGradename = cursor.getString(cursor.getColumnIndex("gradename"));
                 cursor.moveToNext();
             }
-
         } else {
             Error("\nNo Logged User.\nPlease launch app from the Phoenix Launcher", true);
         }
@@ -98,17 +93,17 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recyclerViewMainMenu);
         sRecyclerView = findViewById(R.id.recyclerViewSubMenu);
-        mRecyclerView.setHasFixedSize(true);
-        sRecyclerView.setHasFixedSize(true);
+        Button btnExitButton = findViewById(R.id.btnExitButton);
         args.putString("CoName", strCoName);
         args.putString("ApiUrl", strApiUrl);
         Adapter mAdapter = new MenuAdapter(MenuList);
         sAdapter = new SubmenuAdapter(SubmenuList);
+        mRecyclerView.setHasFixedSize(true);
+        sRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
         sRecyclerView.setLayoutManager(sLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         sRecyclerView.setAdapter(sAdapter);
-        Button btnExitButton = findViewById(R.id.btnExitButton);
         btnExitButton.setOnClickListener(v -> finishAndRemoveTask());
         if (findViewById(R.id.topFrame) != null) {
             if (savedInstanceState != null) {
@@ -123,9 +118,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     /**
      * The error display method
-     *
      * This method displays a dialog box with an error message and a close button.
-     *
      * @param strError the error message to display
      */
     @SuppressWarnings ("SameParameterValue")
@@ -153,6 +146,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         MenuList.add(new ObjectMenu("Users"));
         MenuList.add(new ObjectMenu("Grades"));
         MenuList.add(new ObjectMenu("Departments"));
+        MenuList.add(new ObjectMenu("Inventory"));
         objSubMenu.add(new ObjectSubMenu("Users", "List"));
         objSubMenu.add(new ObjectSubMenu("Users", "Add"));
         objSubMenu.add(new ObjectSubMenu("Users","Update"));
@@ -165,6 +159,11 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         objSubMenu.add(new ObjectSubMenu("Departments", "Add"));
         objSubMenu.add(new ObjectSubMenu("Departments","Update"));
         objSubMenu.add(new ObjectSubMenu("Departments", "Remove"));
+        objSubMenu.add(new ObjectSubMenu("Inventory", "List"));
+        objSubMenu.add(new ObjectSubMenu("Inventory", "Add"));
+        objSubMenu.add(new ObjectSubMenu("Inventory","Update"));
+        objSubMenu.add(new ObjectSubMenu("Inventory", "Remove"));
+
     }
 
     /**
@@ -185,7 +184,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     /**
      * The Main Menu Recycler View Adapter
      */
-
     public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
         final private List<ObjectMenu> mMenu;
         class MenuViewHolder extends RecyclerView.ViewHolder {
@@ -292,7 +290,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     /**
      * Method to de-select all the sub-menu buttons
      */
-
     private void resetSubMenu(RecyclerView rv) {
         for (AtomicInteger i = new AtomicInteger(); i.get() < rv.getChildCount(); i.getAndIncrement()) {
             SubmenuAdapter.SubmenuViewHolder holder = (SubmenuAdapter.SubmenuViewHolder) rv.findViewHolderForAdapterPosition(i.get());
@@ -303,13 +300,10 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     /**
      * Method to load the requested menu option
      */
-
     private void CallFragment() {
-
         FragmentBlank blankFragment = new FragmentBlank();
         FragmentUserList userlistFragment = new FragmentUserList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
-
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
@@ -332,9 +326,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         args.putBoolean("update", true);
                         args.putBoolean("remove", false);
                         userlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
                     case "Remove":
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", true);
+                        userlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
+                        break;
                 }
                 break;
             case "Grades":
@@ -365,7 +366,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     }
 
     @Override
-    public void onUpdate(int id) {
+    public void onUserUpdate(int id) {
         FragmentUserUpdate userupdateFragment = new FragmentUserUpdate();
         args.putString("ApiUrl", strApiUrl);
         args.putString("CoName", strCoName);
@@ -375,8 +376,13 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     }
 
     @Override
-    public void onRemove(int id) {
-
+    public void onUserRemove(int id) {
+        FragmentUserRemove userremoveFragment = new FragmentUserRemove();
+        args.putString("ApiUrl", strApiUrl);
+        args.putString("CoName", strCoName);
+        args.putInt("record", id);
+        userremoveFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userremoveFragment).commit();
     }
 
 

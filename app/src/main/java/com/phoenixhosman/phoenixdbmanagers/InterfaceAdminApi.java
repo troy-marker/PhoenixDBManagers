@@ -86,4 +86,13 @@ public interface InterfaceAdminApi {
             @Field("username") String username,
             @Field("grade") int grade,
             @Field("department") int department);
+
+    /**
+     * Delete a user from the database
+     * @param id - The id of the user to delete
+     * @return JSON String - the deletion results
+     */
+    @GET("duser/{id}")
+    Call<String> duser(
+            @Path("id") int id);
 }

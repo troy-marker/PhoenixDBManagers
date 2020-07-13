@@ -24,7 +24,7 @@
             android:textAllCaps="true"
             android:textColor="@color/Phoenix_Black" />
         <TextView
-            android:layout_width="200dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/x_border_3"
             android:gravity="center"

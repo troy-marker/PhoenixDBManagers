@@ -19,14 +19,14 @@ package com.phoenixhosman.phoenixdbmanagers;
 public interface InterfaceDataPasser {
 
     /**
-     * Interface to pass the id to update
+     * Interface to pass the id of User to update
      * @param id Integer - the record number to update
      */
-    void onUpdate(int id);
+    void onUserUpdate(int id);
 
     /**
-     * Interface to pass the id to remove
+     * Interface to pass the id of User to remove
      * @param id Integer - the record number to remove
      */
-    void onRemove(int id);
+    void onUserRemove(int id);
 }

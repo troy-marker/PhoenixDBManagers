@@ -123,7 +123,7 @@ public class FragmentUserUpdate extends Fragment implements OnClickListener {
     }
 
     /**
-     * Method to display user being updates
+     * Method to display user being updated
      * @param username The user's username
      */
     public void DisplayUser(String username) {
