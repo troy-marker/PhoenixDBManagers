@@ -303,6 +303,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     private void CallFragment() {
         FragmentBlank blankFragment = new FragmentBlank();
         FragmentUserList userlistFragment = new FragmentUserList();
+        FragmentGradeList gradelistFragment = new FragmentGradeList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
         switch (strMenuName) {
             case "Users":
@@ -336,9 +337,29 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
                         break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + strSubMenuName);                       
                 }
                 break;
             case "Grades":
+                switch (strSubMenuName) {
+                    case "List":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        gradelistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
+                        break;
+                    case "Add":
+
+                    case "Update":
+
+                    case "Remove":
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + strSubMenuName);
+                }
+                break;
             case "Departments":
                 switch (strSubMenuName) {
                     case "List":
@@ -350,6 +371,8 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         throw new IllegalStateException("Unexpected value: " + strSubMenuName);
                 }
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + strMenuName);
         }
     }
 
@@ -383,6 +406,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         args.putInt("record", id);
         userremoveFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userremoveFragment).commit();
+    }
+
+    @Override
+    public void onGradeUpdate(int id) {
+
+    }
+
+    @Override
+    public void onGradeRemove(int id) {
+
     }
 
 

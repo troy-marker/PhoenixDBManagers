@@ -2,23 +2,26 @@
 <!--
     The Phoenix Hospitality Management System
     Phoenix Database Manager App Source Code
-    Fragment User List Portrait Layout Definition File
+    Grade List Portrait Layout Definition File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
     The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
     Use of this code outside the PHMS is strictly prohibited.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context=".FragmentGradeList">
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="@string/user_list_title"
+        android:text="@string/grade_list_title"
         android:textSize="36sp" />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -34,40 +37,16 @@
             android:textAllCaps="true"
             android:textColor="@color/Phoenix_Black" />
         <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/username"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/created"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
-        <TextView
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@drawable/x_border_3"
             android:gravity="center"
             android:text="@string/grade_1"
             android:textAllCaps="true"
             android:textColor="@color/Phoenix_Black" />
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/department_1"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUserList"
+        android:id="@+id/recyclerViewGradeList"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"

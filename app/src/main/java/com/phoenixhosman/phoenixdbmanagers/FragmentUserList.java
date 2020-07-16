@@ -33,7 +33,6 @@ import retrofit2.Response;
 
 /**
  * User List Fragment code file
- *
  * @author Troy Marker
  * @version 1.0.0
  */

@@ -29,4 +29,16 @@ public interface InterfaceDataPasser {
      * @param id Integer - the record number to remove
      */
     void onUserRemove(int id);
+
+    /**
+     * Interface to pass the id of Grade to update
+     * @param id Integer - the record number to update
+     */
+    void onGradeUpdate(int id);
+
+    /**
+     * Interface to pass the id of Grade to remove
+     * @param id Integer - the record number to remove
+     */
+    void onGradeRemove(int id);
 }

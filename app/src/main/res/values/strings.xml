@@ -1,3 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Phoenix Hospitality Management System
+    Phoenix Database Manager App Source Code
+    String Values XML Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+-->
 <resources>
     <string name="app_name">Phoenix Database Managers</string>
     <string name="blank"> </string>
@@ -10,13 +21,13 @@
     <string name="grade">Grade: </string>
     <string name="grade_1">Grade</string>
     <string name="phoenix_logo">Phoenix Logo</string>
-    <string name="select">Select</string>
+    <string name="id">ID</string>
     <string name="user_add_title">%1$s Add User</string>
     <string name="user_remove_title">%1$s Remove User</string>
     <string name="user_list_title">%1$s User List</string>
     <string name="user_update_title">%1$s Update User</string>
     <string name="update_user">Update User</string>
-
+    <string name="grade_list_title">%1$s Grade List</string>
     <string name="username">Username: </string>
     <string name="password">Password:</string>
     <string name="add_user">Add User</string>
