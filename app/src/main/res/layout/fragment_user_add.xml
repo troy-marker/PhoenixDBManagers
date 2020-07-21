@@ -12,140 +12,64 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/Phoenix_Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/user_add_title"
-        android:textSize="36sp" />
-
+        style="@style/Phoenix_Fragment_Title"
+        android:text="@string/user_add_title" />
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
-
+        style="@style/Phoenix_Fragment_Layout">
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
+            style="@style/Phoenix_Fragment_Layout_Entry">
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                style="@style/Phoenix_Input">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="top"
+                    style="@style/Phoenix_Input.Label"
                     android:text="@string/username" />
-
                 <EditText
                     android:id="@+id/etUsername"
-                    android:layout_width="fill_parent"
-                    android:layout_height="35dp"
-                    android:gravity="bottom"
-                    android:inputType="text"
-                    android:textColor="@color/Phoenix_White"
+                    style="@style/Phoenix_Input.Edit.Text"
                     tools:ignore="Autofill,LabelFor" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                style="@style/Phoenix_Input">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/Phoenix_Input.Label"
                     android:text="@string/password" />
-
                 <EditText
                     android:id="@+id/etPassword"
-                    android:layout_width="fill_parent"
-                    android:layout_height="35dp"
-                    android:inputType="textPassword"
-                    android:textColor="@color/Phoenix_White"
+                    style="@style/Phoenix_Input.Edit.Password"
                     tools:ignore="Autofill,LabelFor" />
             </LinearLayout>
-
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                style="@style/Phoenix_Input">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/Phoenix_Input.Label"
                     android:text="@string/grade" />
-
                 <Spinner
                     android:id="@+id/gradeSpinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="35dp"
-                    android:background="@drawable/x_border_2"
-                    android:popupBackground="@drawable/x_border_1"
-                    android:spinnerMode="dropdown" />
-
+                    style="@style/Phoenix_Input.Spinner"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
+                style="@style/Phoenix_Input">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
+                    style="@style/Phoenix_Input.Label"
                     android:text="@string/department" />
-
                 <Spinner
                     android:id="@+id/departmentSpinner"
-                    android:layout_width="fill_parent"
-                    android:layout_height="35dp"
-                    android:background="@drawable/x_border_2"
-                    android:popupBackground="@drawable/x_border_1"
-                    android:spinnerMode="dropdown" />
-
+                    style="@style/Phoenix_Input.Spinner"/>
             </LinearLayout>
-
         </LinearLayout>
-
         <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            style="@style/Phoenix_Fragment_Layout_Buttons">
             <Button
                 android:id="@+id/btnAddUser"
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/x_red_button"
-                android:paddingTop="50dp"
-                android:text="@string/add_user"
-                android:textColor="@color/Phoenix_Black" />
-
+                style="@style/Phoenix_Button.Red"
+                android:text="@string/add_user" />
             <Button
                 android:id="@+id/btnCancel"
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/x_red_button"
-                android:paddingTop="50dp"
-                android:text="@string/cancel"
-                android:textColor="@color/Phoenix_Black" />
+                style="@style/Phoenix_Button.Red"
+                android:text="@string/cancel" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

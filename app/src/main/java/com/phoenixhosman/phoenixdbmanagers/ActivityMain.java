@@ -125,7 +125,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     public void Error(String strError, Boolean exit) {
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         View view = inflate(this, R.layout.dialog_error, null);
-        Button btnExit = view.findViewById(R.id.buttonExitButton);
+        Button btnExit = view.findViewById(R.id.btnExitButton);
         Button btnError = view.findViewById(R.id.btnErrorMessage);
         btnError.setText(getString(R.string.error, strError ));
         mBuilder.setView(view);
@@ -305,6 +305,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         FragmentUserList userlistFragment = new FragmentUserList();
         FragmentGradeList gradelistFragment = new FragmentGradeList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
+        FragmentGradeAdd gradeaddFragment = new FragmentGradeAdd();
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
@@ -351,10 +352,26 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
                         break;
                     case "Add":
-
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        gradelistFragment.setArguments(args);
+                        gradeaddFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, gradeaddFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
+                        break;
                     case "Update":
-
+                        args.putBoolean("update", true);
+                        args.putBoolean("remove", false);
+                        gradelistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
+                        break;
                     case "Remove":
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", true);
+                        gradelistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + strSubMenuName);
@@ -379,7 +396,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     public void ClearTopFrame() {
         FragmentBlank blankFragment = new FragmentBlank();
         getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
-        resetSubMenu(sRecyclerView);
     }
 
     public void LoadUserList() {

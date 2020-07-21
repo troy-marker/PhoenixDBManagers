@@ -11,57 +11,29 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/Phoenix_Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/user_remove_title"
-        android:textSize="36sp" />
+        style="@style/Phoenix_Fragment_Title"
+        android:text="@string/user_remove_title" />
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:baselineAligned="false"
-        android:orientation="horizontal">
+        style="@style/Phoenix_Fragment_Layout">
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/Phoenix_Fragment_Layout_Entry">
             <TextView
                 android:id="@+id/txtUserRemoveQuestion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/blank"
-                android:textSize="36sp"/>
+                style="@style/Phoenix_Fragment_Layout_Entry_Prompt" />
         </LinearLayout>
         <LinearLayout
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/Phoenix_Fragment_Layout_Buttons">
             <Button
                 android:id="@+id/btnYes"
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/x_red_button"
-                android:paddingTop="50dp"
-                android:text="@string/yes"
-                android:textColor="@color/Phoenix_Black" />
+                style="@style/Phoenix_Button.Red"
+                android:text="@string/yes" />
             <Button
                 android:id="@+id/btnNo"
-                android:layout_width="124dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/x_green_button"
-                android:paddingTop="50dp"
-                android:text="@string/no"
-                android:textColor="@color/Phoenix_Black" />
+                style="@style/Phoenix_Button.Green"
+                android:text="@string/no" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Phoenix Hospitality Management System
+    Phoenix Database Manager App Source Code
+    Fragment Grade Add Portrait Layout Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/grade_add_title"
+        android:textSize="36sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="top"
+                    android:text="@string/gradename" />
+
+                <EditText
+                    android:id="@+id/etGradename"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:gravity="bottom"
+                    android:inputType="text"
+                    android:textColor="@color/Phoenix_White"
+                    tools:ignore="Autofill,LabelFor" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnAddGrade"
+                android:layout_width="124dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/x_red_button"
+                android:paddingTop="35dp"
+                android:text="@string/add_grade"
+                android:textColor="@color/Phoenix_Black"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="124dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/x_red_button"
+                android:paddingTop="35dp"
+                android:text="@string/cancel"
+                android:textColor="@color/Phoenix_Black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

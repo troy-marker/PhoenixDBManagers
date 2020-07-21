@@ -10,66 +10,35 @@
     Use of this code outside the PHMS is strictly prohibited.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/Phoenix_Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/user_list_title"
-        android:textSize="36sp" />
+        style="@style/Phoenix_Fragment_Title"
+        android:text="@string/user_list_title" />
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal">
+        style="@style/Phoenix_Fragment_Layout_List_Header">
         <TextView
             android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center_horizontal"
-            android:text="@string/id"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
+            style="@style/Phoenix_Fragment_Layout_List_Column"
+            android:text="@string/id" />
         <TextView
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/username"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
+            style="@style/Phoenix_Fragment_Layout_List_Column"
+            android:text="@string/username"/>
         <TextView
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/created"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
+            style="@style/Phoenix_Fragment_Layout_List_Column"
+            android:text="@string/created" />
         <TextView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/grade_1"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
+            style="@style/Phoenix_Fragment_Layout_List_Column"
+            android:text="@string/grade_1" />
         <TextView
             android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/x_border_3"
-            android:gravity="center"
-            android:text="@string/department_1"
-            android:textAllCaps="true"
-            android:textColor="@color/Phoenix_Black" />
+            style="@style/Phoenix_Fragment_Layout_List_Column"
+            android:text="@string/department_1" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUserList"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"/>
+        style="@style/Phoenix_Fragment_Layout_List_Recycle" />
 </LinearLayout>

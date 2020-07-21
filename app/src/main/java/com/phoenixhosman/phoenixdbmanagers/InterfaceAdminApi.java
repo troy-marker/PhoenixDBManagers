@@ -95,4 +95,9 @@ public interface InterfaceAdminApi {
     @GET("duser/{id}")
     Call<String> duser(
             @Path("id") int id);
+
+    @FormUrlEncoded
+    @POST("grade")
+    Call<String> grade(
+            @Field("grade") String grade);
 }

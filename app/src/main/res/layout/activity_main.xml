@@ -12,53 +12,29 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ActivityMain">
+    style="@style/Phoenix_Activity"
+    tools:context=".ActivityMain"
+    tools:ignore="DisableBaselineAlignment,InefficientWeight,NestedWeights">
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:orientation="vertical">
+        style="@style/Phoenix_Activity_Layout_Left">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMainMenu"
-        android:layout_width="130dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        style="@style/Phoenix_Activity_Layout_MainMenu" />
     <Button
         android:id="@+id/btnExitButton"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/x_blue_button"
-        android:paddingTop="50dp"
-        android:text="@string/exit_1"
-        android:textColor="@color/Phoenix_Black" />
+        style="@style/Phoenix_Button.Blue"
+        android:text="@string/exit_1" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        style="@style/Phoenix_Activity_Layout_Middle" >
         <FrameLayout
             android:id="@+id/topFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:ignore="NestedWeights" />
-
+             style="@style/Phoenix_Activity_Layout_Middle_Frame" />
         <FrameLayout
             android:id="@+id/bottomFrame"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            style="@style/Phoenix_Activity_Layout_Middle_Frame" />
     </LinearLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSubMenu"
-        android:layout_width="130dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:layout_weight="0" />
-
+        style="@style/Phoenix_Activity_Layout_SubMenu" />
 </LinearLayout>

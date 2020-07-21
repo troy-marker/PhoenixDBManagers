@@ -101,7 +101,7 @@ public class FragmentUserRemove extends Fragment implements View.OnClickListener
             case R.id.btnYes:
                 if (id == 1) {
                     ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                    Toast.makeText(getContext(),"Cannot remove built in administrator.", Toast.LENGTH_LONG).show();
+                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Cannot remove built in administrator.",false);
                 } else {
                     Call<String> call = ManagerAdminApi.getInstance().getApi().duser(id);
                     call.enqueue(new Callback<String>() {
@@ -112,17 +112,17 @@ public class FragmentUserRemove extends Fragment implements View.OnClickListener
                                     assert response.body() != null;
                                     JSONObject obj = new JSONObject(response.body());
                                     if (obj.optBoolean("success")) {
-                                        Toast.makeText(getContext(), obj.optString("message"), Toast.LENGTH_LONG).show();
+                                        ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"),false);
                                         ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                                     }
                                     if (!obj.optBoolean("success")) {
-                                        @SuppressLint("ShowToast") Toast toast = Toast.makeText(getContext(), "Unable to delete user", Toast.LENGTH_SHORT);
+                                        ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Unable to delete user",false);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             } else {
-                                Toast.makeText(getContext(), "Failed loading user information", Toast.LENGTH_LONG).show();
+                                ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Failed loading user information",false);
                             }
                         }
 
@@ -131,7 +131,9 @@ public class FragmentUserRemove extends Fragment implements View.OnClickListener
                         }
                     });
                 }
-                ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
+                if(id != 1) {
+                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
+                }
         }
     }
 }

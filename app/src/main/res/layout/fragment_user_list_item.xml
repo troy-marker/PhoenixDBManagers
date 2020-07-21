@@ -10,44 +10,25 @@
     Use of this code outside the PHMS is strictly prohibited.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:orientation="horizontal">
+    style="@style/Phoenix_Fragment_Layout_List_Row">
     <TextView
         android:id="@+id/tvId"
         android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/x_border_1"
-        android:gravity="center_horizontal"
-        android:text="@string/blank"
-        android:textAllCaps="true" />
+        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/x_border_1"
-        android:gravity="center"
-        android:text="@string/blank" />
+        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
     <TextView
         android:id="@+id/tvCreated"
         android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/x_border_1"
-        android:gravity="center"
-        android:text="@string/blank" />
+        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
     <TextView
         android:id="@+id/tvGrade"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/x_border_1"
-        android:gravity="center"
-        android:text="@string/blank" />
+        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
     <TextView
         android:id="@+id/tvDepartment"
         android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/x_border_1"
-        android:gravity="center"
-        android:text="@string/blank" />
+        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
 </LinearLayout>

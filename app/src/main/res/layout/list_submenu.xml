@@ -15,12 +15,5 @@
     android:layout_height="wrap_content">
     <Button
         android:id="@+id/btnSubMenuItem"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/x_yellow_button"
-        android:paddingTop="50dp"
-        android:text="@string/blank"
-        android:textColor="@color/Phoenix_Black" />
+        style="@style/Phoenix_Button.Yellow" />
 </LinearLayout>
