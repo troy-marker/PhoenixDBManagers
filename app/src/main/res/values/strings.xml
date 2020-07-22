@@ -16,6 +16,7 @@
     <string name="department">Department: </string>
     <string name="department_1">Department</string>
     <string name="error">ERROR: %1$s</string>
+    <string name="success">SUCCESS: %1$s</string>
     <string name="exit">CLOSE</string>
     <string name="exit_1">EXIT</string>
     <string name="grade">Grade: </string>

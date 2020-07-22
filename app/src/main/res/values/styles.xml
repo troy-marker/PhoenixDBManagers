@@ -112,13 +112,13 @@
         <item name="android:gravity">center_horizontal</item>
         <item name="android:text">@string/blank</item>
     </style>
-    <style name="Phoenix_Dialog_Error">
+    <style name="Phoenix_Dialog">
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">53dp</item>
         <item name="android:background">@color/Phoenix_Black</item>
     </style>
-    <style name="Phoenix_Dialog_Error_Message">
+    <style name="Phoenix_Dialog_Message">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_weight">1</item>
@@ -126,7 +126,13 @@
         <item name="android:background">@drawable/x_border_0</item>
         <item name="android:textSize">24sp</item>
     </style>
-    <style name="Phoenix_Dialog_Error_Button">
+    <style name="Phoenix_Dialog_Message.Error">
+        <item name="android:textColor">@color/Phoenix_Lt_Red</item>
+    </style>
+    <style name="Phoenix_Dialog_Message.Success">
+        <item name="android:textColor">@color/Phoenix_Lt_Green</item>
+    </style>
+    <style name="Phoenix_Dialog_Button">
         <item name="android:layout_width">124dp</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_marginStart">5dp</item>
@@ -135,7 +141,13 @@
         <item name="android:text"> </item>
         <item name="android:textColor">@color/Phoenix_Black</item>
         <item name="android:textSize">18sp</item>
+
+    </style>
+    <style name="Phoenix_Dialog_Button.Error">
         <item name="android:background">@drawable/x_red_button</item>
+    </style>
+    <style name="Phoenix_Dialog_Button.Success">
+        <item name="android:background">@drawable/x_green_button</item>
     </style>
     <style name="Phoenix_Button">
         <item name="android:layout_width">124dp</item>

@@ -13,12 +13,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Phoenix_Dialog">
     <Button
-        android:id="@+id/btnErrorMessage"
-        style="@style/Phoenix_Dialog_Message.Error"
-        android:text="@string/error"/>
+        android:id="@+id/btnMessage"
+        style="@style/Phoenix_Dialog_Message.Success"
+        android:text="@string/success"/>
 
     <Button
-        android:id="@+id/btnExitButton"
-        style="@style/Phoenix_Dialog_Button.Error"
+        android:id="@+id/btnButton"
+        style="@style/Phoenix_Dialog_Button.Success"
         android:text="@string/exit" />
 </LinearLayout>

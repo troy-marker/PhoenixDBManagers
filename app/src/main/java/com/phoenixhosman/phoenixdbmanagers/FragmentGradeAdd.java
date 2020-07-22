@@ -17,11 +17,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.util.Objects;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Grade Add Fragment code file
@@ -55,13 +58,11 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
         btnCancel = view.findViewById(R.id.btnCancel);
         etGradename = view.findViewById(R.id.etGradename);
         new ManagerAdminApi(apiUrl);
-
         btnAddGrade.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
-
         TextView tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setText(getString(R.string.grade_add_title, coName));
-
+        etGradename.requestFocus();
         return view;
     }
 
@@ -75,7 +76,29 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
                 if (etGradename.getText().toString().isEmpty()) {
                     ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A grade name is required", false);
                 } else {
-
+                    Call<String> call = ManagerAdminApi.getInstance().getApi().grade(etGradename.getText().toString());
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                            String body = response.body();
+                            try {
+                                assert body != null;
+                                JSONObject obj = new JSONObject(body);
+                                if (obj.optString("success").equals("false")) {
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
+                                } else {
+                                    etGradename.setText("");
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success("Grade successfully created");
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        @Override
+                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        }
+                    });
                 }
         }
     }

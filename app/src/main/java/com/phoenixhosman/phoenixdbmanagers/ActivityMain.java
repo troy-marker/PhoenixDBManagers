@@ -140,6 +140,28 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
     }
 
     /**
+     * The information display method
+     * This method displays a dialog box with an error message and a close button.
+     * @param strMessage the error message to display
+     */
+    @SuppressWarnings ("SameParameterValue")
+    public void Success(String strMessage) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        View view = inflate(this, R.layout.dialog_success, null);
+        Button btnExit = view.findViewById(R.id.btnButton);
+        Button btnError = view.findViewById(R.id.btnMessage);
+        btnError.setText(getString(R.string.success, strMessage ));
+        mBuilder.setView(view);
+        AlertDialog dialog = mBuilder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.show();
+        btnExit.setOnClickListener(v -> {
+            dialog.dismiss();
+        });
+    }
+
+    /**
      * Method to define the main and sub menus
      */
     public void BuildMenu() {
@@ -402,6 +424,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         FragmentUserList userlistFragment = new FragmentUserList();
         userlistFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, userlistFragment).commit();
+    }
+
+    public void LoadGradeList() {
+        FragmentGradeList gradelistFragment = new FragmentGradeList();
+        gradelistFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
     }
 
     @Override
