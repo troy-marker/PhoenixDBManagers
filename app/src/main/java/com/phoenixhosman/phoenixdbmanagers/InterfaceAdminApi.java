@@ -35,10 +35,11 @@ public interface InterfaceAdminApi {
 
     /**
      * Get a single user from the database
-     * @return the sugle user read
+     * @return the single user to read
      */
     @GET("user/{id}")
-    Call<String> user(@Path("id") int id);
+    Call<String> user(
+            @Path("id") int id);
 
     /**
      * Gets the grade list
@@ -94,6 +95,14 @@ public interface InterfaceAdminApi {
      */
     @GET("duser/{id}")
     Call<String> duser(
+            @Path("id") int id);
+
+    /**
+     * Get a single grade from the database
+     * @return the single grade to read
+     */
+    @GET("grade/{id}")
+    Call<String> grade(
             @Path("id") int id);
 
     @FormUrlEncoded

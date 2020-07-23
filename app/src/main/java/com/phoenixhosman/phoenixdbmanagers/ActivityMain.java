@@ -454,7 +454,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     @Override
     public void onGradeUpdate(int id) {
-
+        FragmentGradeUpdate gradeupdateFragment = new FragmentGradeUpdate();
+        args.putString("ApiUrl", strApiUrl);
+        args.putString("CoName", strCoName);
+        args.putInt("record", id);
+        gradeupdateFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, gradeupdateFragment).commit();
     }
 
     @Override

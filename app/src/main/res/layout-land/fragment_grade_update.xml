@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Phoenix Hospitality Management System
+    Phoenix Database Manager App Source Code
+    Grade Update Landscape Layout Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Phoenix_Fragment"
+    tools:ignore="Autofill,LabelFor">
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Phoenix_Fragment_Title"
+        android:text="@string/grade_update_title" />
+    <LinearLayout
+        style="@style/Phoenix_Fragment_Layout">
+        <LinearLayout
+            style="@style/Phoenix_Fragment_Layout_Entry">
+            <LinearLayout
+                style="@style/Phoenix_Input">
+                <TextView
+                    style="@style/Phoenix_Input.Label"
+                    android:text="@string/username" />
+                <EditText
+                    android:id="@+id/etGradename"
+                    style="@style/Phoenix_Input.Edit.Text" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/Phoenix_Fragment_Layout_Buttons">
+            <Button
+                android:id="@+id/btnUpdateUser"
+                style="@style/Phoenix_Button.Red"
+                android:text="@string/update_grade" />
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/Phoenix_Button.Red"
+                android:text="@string/cancel" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
