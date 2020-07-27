@@ -231,6 +231,7 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
                                                 } else {
                                                     Toast.makeText(getContext(), "User successfully created", Toast.LENGTH_LONG).show();
                                                     ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
+                                                    ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();

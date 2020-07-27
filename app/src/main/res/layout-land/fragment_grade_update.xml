@@ -35,7 +35,7 @@
         <LinearLayout
             style="@style/Phoenix_Fragment_Layout_Buttons">
             <Button
-                android:id="@+id/btnUpdateUser"
+                android:id="@+id/btnUpdateGrade"
                 style="@style/Phoenix_Button.Red"
                 android:text="@string/update_grade" />
             <Button

@@ -112,6 +112,33 @@ public class FragmentGradeUpdate extends Fragment implements View.OnClickListene
                 ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                 break;
             case R.id.btnUpdateGrade:
+                if (etGradename.getText().toString().isEmpty()) {
+                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A gradename is required", false);
+                } else {
+                    Call<String> call = ManagerAdminApi.getInstance().getApi().rgrade(record, etGradename.getText().toString());
+                    call.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                            String body = response.body();
+                            try {
+                                assert body != null;
+                                JSONObject obj = new JSONObject(body);
+                                if (obj.optString("success").equals("false")) {
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
+                                } else {
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success("Grade successfully updated");
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        @Override
+                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        }
+                    });
+                }
                 break;
         }
     }

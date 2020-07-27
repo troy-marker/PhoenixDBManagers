@@ -109,4 +109,10 @@ public interface InterfaceAdminApi {
     @POST("grade")
     Call<String> grade(
             @Field("grade") String grade);
+
+    @FormUrlEncoded
+    @POST("rgrade")
+    Call<String> rgrade(
+            @Field("id") int id,
+            @Field("grade") String grade);
 }
