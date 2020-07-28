@@ -328,6 +328,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         FragmentGradeList gradelistFragment = new FragmentGradeList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
         FragmentGradeAdd gradeaddFragment = new FragmentGradeAdd();
+        FragmentDepartmentList departmentlistFragment = new FragmentDepartmentList();
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
@@ -402,6 +403,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
             case "Departments":
                 switch (strSubMenuName) {
                     case "List":
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        departmentlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
+                        break;
                     case "Add":
                     case "Update":
                     case "Remove":
@@ -486,6 +493,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
             graderemoveFragment.setArguments(args);
             getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, graderemoveFragment).commit();
         }
+    }
+
+    @Override
+    public void onDepartmentUpdate(int id) {
+
+    }
+
+    @Override
+    public void onDepartmentRemove(int id) {
+
     }
 
 
