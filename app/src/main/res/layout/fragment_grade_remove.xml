@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+        The Phoenix Hospitality Management System
+        Phoenix Database Manager App Source Code
+        Fragment Grade Remove Portrait Layout Definition File
+        Copyright (c) 2020 By Troy Marker Enterprises
+        All Rights Under Copyright Reserved
+
+        The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+        Use of this code outside the PHMS is strictly prohibited.
+    -->
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/Phoenix_Fragment">
+<TextView
+    android:id="@+id/tvTitle"
+    style="@style/Phoenix_Fragment_Title"
+    android:text="@string/grade_remove_title" />
+<LinearLayout
+    style="@style/Phoenix_Fragment_Layout">
+    <LinearLayout
+        style="@style/Phoenix_Fragment_Layout_Entry">
+        <TextView
+            android:id="@+id/txtGradeRemoveQuestion"
+            style="@style/Phoenix_Fragment_Layout_Entry_Prompt" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/Phoenix_Fragment_Layout_Buttons">
+        <Button
+            android:id="@+id/btnYes"
+            style="@style/Phoenix_Button.Red"
+            android:text="@string/yes" />
+        <Button
+            android:id="@+id/btnNo"
+            style="@style/Phoenix_Button.Green"
+            android:text="@string/no" />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

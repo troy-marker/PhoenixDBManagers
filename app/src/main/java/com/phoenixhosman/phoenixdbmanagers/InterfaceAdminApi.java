@@ -11,11 +11,13 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
 import retrofit2.Call;
+
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+
 
 
 /**
@@ -97,10 +99,11 @@ public interface InterfaceAdminApi {
     Call<String> duser(
             @Path("id") int id);
 
-    /**
-     * Get a single grade from the database
-     * @return the single grade to read
-     */
+
+    @GET("dgrade/{id}")
+    Call<String> dgrade(
+            @Path("id") int id);
+
     @GET("grade/{id}")
     Call<String> grade(
             @Path("id") int id);
@@ -115,4 +118,5 @@ public interface InterfaceAdminApi {
     Call<String> rgrade(
             @Field("id") int id,
             @Field("grade") String grade);
+
 }

@@ -31,6 +31,7 @@
     <string name="grade_list_title">%1$s Grade List</string>
     <string name="grade_add_title">%1$s Add Grade</string>
     <string name="grade_update_title">%1$s Update Grade</string>
+    <string name="grade_remove_title">%1$s Remove Grade</string>
     <string name="username">Username: </string>
     <string name="gradename">Grade Name:</string>
     <string name="password">Password:</string>
@@ -41,4 +42,5 @@
     <string name="no">No</string>
     <string name="update_grade">Update Grade</string>
     <string name="UserRemoveQuestion">Are you sure you want to remove user: %1$s?</string>
+    <string name="GradeRemoveQuestion">Are you sure you want to remove grade: %1$s?</string>
 </resources>

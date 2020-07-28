@@ -434,37 +434,58 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     @Override
     public void onUserUpdate(int id) {
-        FragmentUserUpdate userupdateFragment = new FragmentUserUpdate();
-        args.putString("ApiUrl", strApiUrl);
-        args.putString("CoName", strCoName);
-        args.putInt("record", id);
-        userupdateFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userupdateFragment).commit();
+        if (id <= 1) {
+            this.Error("Can not update built-in Administrator", false);
+        } else {
+            FragmentUserUpdate userupdateFragment = new FragmentUserUpdate();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            userupdateFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userupdateFragment).commit();
+        }
     }
 
     @Override
     public void onUserRemove(int id) {
-        FragmentUserRemove userremoveFragment = new FragmentUserRemove();
-        args.putString("ApiUrl", strApiUrl);
-        args.putString("CoName", strCoName);
-        args.putInt("record", id);
-        userremoveFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userremoveFragment).commit();
+        if (id <= 1) {
+            this.Error("Can not remove built-in Administrator", false);
+        } else {
+            FragmentUserRemove userremoveFragment = new FragmentUserRemove();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            userremoveFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, userremoveFragment).commit();
+        }
     }
 
     @Override
     public void onGradeUpdate(int id) {
-        FragmentGradeUpdate gradeupdateFragment = new FragmentGradeUpdate();
-        args.putString("ApiUrl", strApiUrl);
-        args.putString("CoName", strCoName);
-        args.putInt("record", id);
-        gradeupdateFragment.setArguments(args);
-        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, gradeupdateFragment).commit();
+        if (id <= 1) {
+            this.Error("Can not change a built-in grade", false);
+        } else {
+            FragmentGradeUpdate gradeupdateFragment = new FragmentGradeUpdate();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            gradeupdateFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, gradeupdateFragment).commit();
+        }
     }
 
     @Override
     public void onGradeRemove(int id) {
-
+        if (id <= 4) {
+            this.Error("Can not remove a built-in grade", false);
+        } else {
+            FragmentGradeRemove graderemoveFragment = new FragmentGradeRemove();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            graderemoveFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, graderemoveFragment).commit();
+        }
     }
 
 

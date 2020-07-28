@@ -16,7 +16,6 @@
         android:id="@+id/btnMessage"
         style="@style/Phoenix_Dialog_Message.Success"
         android:text="@string/success"/>
-
     <Button
         android:id="@+id/btnButton"
         style="@style/Phoenix_Dialog_Button.Success"

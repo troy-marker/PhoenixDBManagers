@@ -78,7 +78,7 @@ public class FragmentUserRemove extends Fragment implements View.OnClickListener
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getContext(),"Failed loading user information", Toast.LENGTH_LONG).show();
+                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Failed loading user information", false);
                 }
             }
             @Override
