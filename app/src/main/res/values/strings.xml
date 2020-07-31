@@ -33,11 +33,14 @@
     <string name="grade_update_title">%1$s Update Grade</string>
     <string name="grade_remove_title">%1$s Remove Grade</string>
     <string name="department_list_title">%1$s Department List</string>
+    <string name="department_add_title">%1$s Add Department</string>
     <string name="username">Username: </string>
     <string name="gradename">Grade Name:</string>
+    <string name="departmentname">Department Name:</string>
     <string name="password">Password:</string>
     <string name="add_user">Add User</string>
     <string name="add_grade">Add Grade</string>
+    <string name="add_department">Add Department</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

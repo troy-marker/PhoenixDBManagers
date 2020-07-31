@@ -326,9 +326,10 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         FragmentBlank blankFragment = new FragmentBlank();
         FragmentUserList userlistFragment = new FragmentUserList();
         FragmentGradeList gradelistFragment = new FragmentGradeList();
+        FragmentDepartmentList departmentlistFragment = new FragmentDepartmentList();
         FragmentUserAdd useraddFragment = new FragmentUserAdd();
         FragmentGradeAdd gradeaddFragment = new FragmentGradeAdd();
-        FragmentDepartmentList departmentlistFragment = new FragmentDepartmentList();
+        FragmentDepartmentAdd departmentaddFragment = new FragmentDepartmentAdd();
         switch (strMenuName) {
             case "Users":
                 switch (strSubMenuName) {
@@ -410,6 +411,13 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
                         break;
                     case "Add":
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", false);
+                        departmentlistFragment.setArguments(args);
+                        departmentaddFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, departmentaddFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
+                        break;
                     case "Update":
                     case "Remove":
                         break;
@@ -437,6 +445,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         FragmentGradeList gradelistFragment = new FragmentGradeList();
         gradelistFragment.setArguments(args);
         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, gradelistFragment).commit();
+    }
+
+    public void LoadDepartmentList() {
+        FragmentDepartmentList departmentlistFragment = new FragmentDepartmentList();
+        departmentlistFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame,departmentlistFragment).commit();
     }
 
     @Override

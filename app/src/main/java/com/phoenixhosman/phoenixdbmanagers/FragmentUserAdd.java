@@ -226,10 +226,15 @@ public class FragmentUserAdd extends Fragment implements OnClickListener, androi
                                             try {
                                                 assert body != null;
                                                 JSONObject obj = new JSONObject(body);
-                                                if (obj.optString("success").equals("false")) {
-                                                    Toast.makeText(getContext(),obj.optString("message"), Toast.LENGTH_LONG).show();
+                                                if (!obj.optBoolean("success")) {
+                                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
+                                                    etUsername.setText("");
+                                                    etPassword.setText("");
+                                                    gradeSpinner.setSelection(0);
+                                                    departmentSpinner.setSelection(0);
+                                                    etUsername.requestFocus();
                                                 } else {
-                                                    Toast.makeText(getContext(), "User successfully created", Toast.LENGTH_LONG).show();
+                                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success ("User successfully created.");
                                                     ((ActivityMain) Objects.requireNonNull(getActivity())).LoadUserList();
                                                     ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                                                 }

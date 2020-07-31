@@ -1,7 +1,7 @@
 /*
     The Phoenix Hospitality Management System
     Database Manager App
-    Grade Addition Fragment Code File
+    Department Addition Fragment Code File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
@@ -32,13 +32,13 @@ import retrofit2.Response;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
+public class FragmentDepartmentAdd extends Fragment implements View.OnClickListener {
     String apiUrl;
-    Button btnAddGrade;
+    Button btnAddDepartment;
     Button btnCancel;
-    EditText etGradename;
+    EditText etDepartmentname;
 
-    public FragmentGradeAdd()  {
+    public FragmentDepartmentAdd()  {
     }
 
     /**
@@ -50,19 +50,19 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
      * @return View object container the fragment view
      */
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_grade_add, container, false);
+        View view = inflater.inflate(R.layout.fragment_department_add, container, false);
         assert getArguments() != null;
         String coName = getArguments().getString("CoName");
         apiUrl = getArguments().getString("ApiUrl");
-        btnAddGrade = view.findViewById(R.id.btnAddGrade);
+        btnAddDepartment = view.findViewById(R.id.btnAddDepartment);
         btnCancel = view.findViewById(R.id.btnCancel);
-        etGradename = view.findViewById(R.id.etGradename);
+        etDepartmentname = view.findViewById(R.id.etDepartmentname);
         new ManagerAdminApi(apiUrl);
-        btnAddGrade.setOnClickListener(this);
+        btnAddDepartment.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.grade_add_title, coName));
-        etGradename.requestFocus();
+        tvTitle.setText(getString(R.string.department_add_title, coName));
+        etDepartmentname.requestFocus();
         return view;
     }
 
@@ -72,11 +72,11 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
             case R.id.btnCancel:
                 ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                 break;
-            case R.id.btnAddGrade:
-                if (etGradename.getText().toString().isEmpty()) {
-                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A grade name is required", false);
+            case R.id.btnAddDepartment:
+                if (etDepartmentname.getText().toString().isEmpty()) {
+                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A department name is required", false);
                 } else {
-                    Call<String> call = ManagerAdminApi.getInstance().getApi().grade(etGradename.getText().toString());
+                    Call<String> call = ManagerAdminApi.getInstance().getApi().department(etDepartmentname.getText().toString());
                     call.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
@@ -84,14 +84,12 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
                             try {
                                 assert body != null;
                                 JSONObject obj = new JSONObject(body);
-                                if (!obj.optBoolean("success")) {
+                                if (obj.optString("success").equals("false")) {
                                     ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
-                                    etGradename.setText("");
-                                    etGradename.requestFocus();
                                 } else {
-                                    etGradename.setText("");
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success("Grade successfully created");
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
+                                    etDepartmentname.setText("");
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success("Department successfully created");
+                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadDepartmentList();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -102,9 +100,6 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
                         }
                     });
                 }
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 }
