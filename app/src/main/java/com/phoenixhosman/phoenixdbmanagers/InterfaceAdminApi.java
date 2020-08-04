@@ -134,4 +134,8 @@ public interface InterfaceAdminApi {
             @Field("id") int id,
             @Field("department") String department);
 
+    @GET("ddepartment/{id}")
+    Call<String> ddepartment(
+            @Path("id") int id);
+
 }

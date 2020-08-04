@@ -119,12 +119,12 @@
     </style>
     <style name="Phoenix_Dialog">
         <item name="android:orientation">horizontal</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">53dp</item>
         <item name="android:background">@color/Phoenix_Black</item>
     </style>
     <style name="Phoenix_Dialog_Message">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_marginTop">-17dp</item>

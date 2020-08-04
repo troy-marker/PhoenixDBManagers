@@ -445,6 +445,11 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
                         break;
                     case "Remove":
+                        args.putBoolean("update", false);
+                        args.putBoolean("remove", true);
+                        departmentlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + strSubMenuName);
@@ -550,7 +555,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     @Override
     public void onDepartmentRemove(int id) {
-
+        if (id <= 6) {
+            this.Error("Can not remove a built-in department", false);
+        } else {
+            FragmentDepartmentRemove departmentremoveFragment = new FragmentDepartmentRemove();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            departmentremoveFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, departmentremoveFragment).commit();
+        }
     }
 
 

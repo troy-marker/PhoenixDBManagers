@@ -36,6 +36,7 @@
     <string name="department_list_title">%1$s Department List</string>
     <string name="department_add_title">%1$s Add Department</string>
     <string name="department_update_title">%1$s Update Department</string>
+    <string name="department_remove_title">%1$s REmove Department</string>
     <string name="username">Username: </string>
     <string name="gradename">Grade Name:</string>
     <string name="departmentname">Department Name:</string>
@@ -50,4 +51,5 @@
     <string name="update_department">Update Department</string>
     <string name="UserRemoveQuestion">Are you sure you want to remove user: %1$s?</string>
     <string name="GradeRemoveQuestion">Are you sure you want to remove grade: %1$s?</string>
+    <string name="DepartmentRemoveQuestion">Are you sure you want to remove department: %1$s</string>
 </resources>
