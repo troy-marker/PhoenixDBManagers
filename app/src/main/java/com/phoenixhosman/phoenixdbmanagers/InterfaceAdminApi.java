@@ -124,4 +124,14 @@ public interface InterfaceAdminApi {
     Call<String> department(
             @Field("department") String department);
 
+    @GET("department/{id}")
+    Call<String> department(
+            @Path("id") int id);
+
+    @FormUrlEncoded
+    @POST("rdepartment")
+    Call<String> rdepartment(
+            @Field("id") int id,
+            @Field("department") String department);
+
 }

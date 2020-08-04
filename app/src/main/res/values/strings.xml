@@ -19,6 +19,7 @@
     <string name="success">SUCCESS: %1$s</string>
     <string name="exit">CLOSE</string>
     <string name="exit_1">EXIT</string>
+    <string name="refresh">REFRESH SCREEN</string>
     <string name="grade">Grade: </string>
     <string name="grade_1">Grade</string>
     <string name="phoenix_logo">Phoenix Logo</string>
@@ -34,6 +35,7 @@
     <string name="grade_remove_title">%1$s Remove Grade</string>
     <string name="department_list_title">%1$s Department List</string>
     <string name="department_add_title">%1$s Add Department</string>
+    <string name="department_update_title">%1$s Update Department</string>
     <string name="username">Username: </string>
     <string name="gradename">Grade Name:</string>
     <string name="departmentname">Department Name:</string>
@@ -45,6 +47,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="update_grade">Update Grade</string>
+    <string name="update_department">Update Department</string>
     <string name="UserRemoveQuestion">Are you sure you want to remove user: %1$s?</string>
     <string name="GradeRemoveQuestion">Are you sure you want to remove grade: %1$s?</string>
 </resources>

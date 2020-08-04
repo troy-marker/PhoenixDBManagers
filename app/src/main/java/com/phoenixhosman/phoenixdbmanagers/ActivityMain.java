@@ -11,6 +11,7 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static android.view.View.VISIBLE;
 import static androidx.recyclerview.widget.RecyclerView.Adapter;
 import static androidx.recyclerview.widget.RecyclerView.inflate;
 import static java.util.Objects.requireNonNull;
@@ -36,9 +39,10 @@ import static java.util.Objects.requireNonNull;
  * @author Troy Marker
  * @version 1.0.0
  */
-public class ActivityMain extends FragmentActivity implements InterfaceDataPasser {
+public class ActivityMain extends FragmentActivity implements InterfaceDataPasser, View.OnClickListener {
     private RecyclerView mRecyclerView;
     private RecyclerView sRecyclerView;
+    private Adapter mAdapter;
     private Adapter sAdapter;
     private final LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
     private final LinearLayoutManager sLayoutManager = new LinearLayoutManager(this);
@@ -88,15 +92,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
             Error("\nNo Logged User.\nPlease launch app from the Phoenix Launcher", true);
         }
         if (!strGradename.contains("Administrator")) {
-            Error("\nAdministrator Grade Required.\nAdministrator Rights required to use this app", true);
+            Error("Administrator Grade Required.\nAdministrator Rights required to use this app", true);
         }
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recyclerViewMainMenu);
         sRecyclerView = findViewById(R.id.recyclerViewSubMenu);
         Button btnExitButton = findViewById(R.id.btnExitButton);
+        Button btnRefreshButton = findViewById(R.id.btnRefreshButton);
         args.putString("CoName", strCoName);
         args.putString("ApiUrl", strApiUrl);
-        Adapter mAdapter = new MenuAdapter(MenuList);
+        mAdapter = new MenuAdapter(MenuList);
         sAdapter = new SubmenuAdapter(SubmenuList);
         mRecyclerView.setHasFixedSize(true);
         sRecyclerView.setHasFixedSize(true);
@@ -104,7 +109,8 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         sRecyclerView.setLayoutManager(sLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         sRecyclerView.setAdapter(sAdapter);
-        btnExitButton.setOnClickListener(v -> finishAndRemoveTask());
+        btnExitButton.setOnClickListener(this);
+        btnRefreshButton.setOnClickListener(this);
         if (findViewById(R.id.topFrame) != null) {
             if (savedInstanceState != null) {
                 return;
@@ -156,9 +162,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
         dialog.show();
-        btnExit.setOnClickListener(v -> {
-            dialog.dismiss();
-        });
+        btnExit.setOnClickListener(v -> dialog.dismiss());
     }
 
     /**
@@ -201,6 +205,21 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnRefreshButton:
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                break;
+            case R.id.btnExitButton:
+                finishAffinity();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
+        }
+    }
 
 
     /**
@@ -419,6 +438,12 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
                         getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
                         break;
                     case "Update":
+                        args.putBoolean("update", true);
+                        args.putBoolean("remove", false);
+                        departmentlistFragment.setArguments(args);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, blankFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.bottomFrame, departmentlistFragment).commit();
+                        break;
                     case "Remove":
                         break;
                     default:
@@ -483,7 +508,7 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     @Override
     public void onGradeUpdate(int id) {
-        if (id <= 1) {
+        if (id <= 4) {
             this.Error("Can not change a built-in grade", false);
         } else {
             FragmentGradeUpdate gradeupdateFragment = new FragmentGradeUpdate();
@@ -511,7 +536,16 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
 
     @Override
     public void onDepartmentUpdate(int id) {
-
+        if (id <= 6) {
+            this.Error("Can not change a built-in department", false);
+        } else {
+            FragmentDepartmentUpdate departmentupdateFragment = new FragmentDepartmentUpdate();
+            args.putString("ApiUrl", strApiUrl);
+            args.putString("CoName", strCoName);
+            args.putInt("record", id);
+            departmentupdateFragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, departmentupdateFragment).commit();
+        }
     }
 
     @Override

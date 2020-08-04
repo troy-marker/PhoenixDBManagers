@@ -17,13 +17,13 @@
     tools:ignore="DisableBaselineAlignment,InefficientWeight,NestedWeights">
     <LinearLayout
         style="@style/Phoenix_Activity_Layout_Left">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMainMenu"
-        style="@style/Phoenix_Activity_Layout_MainMenu" />
-    <Button
-        android:id="@+id/btnExitButton"
-        style="@style/Phoenix_Button.Blue"
-        android:text="@string/exit_1" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewMainMenu"
+            style="@style/Phoenix_Activity_Layout_MainMenu" />
+        <Button
+            android:id="@+id/btnExitButton"
+            style="@style/Phoenix_Button.Blue"
+            android:text="@string/exit_1" />
     </LinearLayout>
     <LinearLayout
         style="@style/Phoenix_Activity_Layout_Middle" >
@@ -34,7 +34,14 @@
             android:id="@+id/bottomFrame"
             style="@style/Phoenix_Activity_Layout_Middle_Frame" />
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSubMenu"
-        style="@style/Phoenix_Activity_Layout_SubMenu" />
+    <LinearLayout
+        style="@style/Phoenix_Activity_Layout_Right">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSubMenu"
+            style="@style/Phoenix_Activity_Layout_SubMenu" />
+        <Button
+            android:id="@+id/btnRefreshButton"
+            style="@style/Phoenix_Button.Blue"
+            android:text="@string/refresh" />
+    </LinearLayout>
 </LinearLayout>
