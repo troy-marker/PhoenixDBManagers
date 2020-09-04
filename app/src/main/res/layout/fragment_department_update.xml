@@ -12,36 +12,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Phoenix_Fragment"
+    style="@style/Fragment"
     tools:ignore="Autofill,LabelFor">
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Phoenix_Fragment_Title"
+        style="@style/Fragment.Title"
         android:text="@string/grade_update_title" />
     <LinearLayout
-        style="@style/Phoenix_Fragment_Layout">
+        style="@style/FragmentLayout">
         <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Entry">
+            style="@style/FragmentLayout.Entry"
+            android:layout_width="match_parent">
+            <TextView
+                style="@style/FragmentLayout.EntryPrompt"
+                android:text="@string/username" />
+            <EditText
+                android:id="@+id/etGradename"
+                style="@style/FragmentInputEdit.Text" />
             <LinearLayout
-                style="@style/Phoenix_Input">
-                <TextView
-                    style="@style/Phoenix_Input.Label"
-                    android:text="@string/username" />
-                <EditText
-                    android:id="@+id/etGradename"
-                    style="@style/Phoenix_Input.Edit.Text" />
+                style="@style/FragmentLayout.Buttons">
+                <Button
+                    android:id="@+id/btnUpdateDepartment"
+                    style="@style/FragmentLayoutButton.Red"
+                    android:text="@string/update_department" />
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/FragmentLayoutButton.Red"
+                    android:text="@string/cancel" />
             </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Buttons">
-            <Button
-                android:id="@+id/btnUpdateDepartment"
-                style="@style/Phoenix_Button.Red"
-                android:text="@string/update_department" />
-            <Button
-                android:id="@+id/btnCancel"
-                style="@style/Phoenix_Button.Red"
-                android:text="@string/cancel" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

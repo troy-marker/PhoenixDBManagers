@@ -10,15 +10,21 @@
  */
 package com.phoenixhosman.phoenixdbmanagers;
 
+/**
+ * Object Sub Menu Definition
+ */
 public class ObjectSubMenu {
+
     /**
      * The name of the sub-menu
      */
     private String mName;
+
     /**
      * The name of the parent menu
      */
     private String mParent;
+
     /**
      * Class constructor
      * @param parent The name of the parent menu
@@ -28,6 +34,7 @@ public class ObjectSubMenu {
         this.mParent = parent;
         this.mName = name;
     }
+
     /**
      * Get the parent name
      * @return Sting - the menu items parent
@@ -35,12 +42,29 @@ public class ObjectSubMenu {
     String getParent() {
         return mParent;
     }
+
+    /**
+     * Sets the menu's parent
+     * @param value the menu parent
+     */
+    public void setParent(String value) {
+        this.mParent = value;
+    }
+
     /**
      * Get the menu name
      * @return String - the menu name
      */
     public String getName() {
         return mName;
+    }
+
+    /**
+     * Sets the menu name
+     * @param value the menu's name
+     */
+    public void setName(String value) {
+        this.mName = value;
     }
 
 }

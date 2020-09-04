@@ -33,4 +33,12 @@ public class ObjectMenu {
     public String getName() {
         return mName;
     }
+
+    /**
+     * Sets the name
+     * @param value - the menu name
+     */
+    public void setName(String value) {
+        this.mName = value;
+    }
 }

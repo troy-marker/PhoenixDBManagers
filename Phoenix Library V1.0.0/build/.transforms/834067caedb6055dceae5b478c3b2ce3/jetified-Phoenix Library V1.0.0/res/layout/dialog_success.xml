@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     The Phoenix Hospitality Management System
-    Phoenix Database Manager App Source Code
-    Fragment Blank Portrait Layout Definition File
+    System Library Package
+    Dialog Error Portrait Layout Definition File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
@@ -11,10 +11,13 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Fragment">
-
-    <ImageView
-        android:id="@+id/phoenixlogo"
-        style="@style/Fragment.Title"
-        android:contentDescription="@string/phoenix_logo" />
+    style="@style/Dialog">
+    <Button
+        android:id="@+id/btnMessage"
+        style="@style/DialogMessage.Success"
+        android:text="@string/success"/>
+    <Button
+        android:id="@+id/btnButton"
+        style="@style/DialogButton.Success"
+        android:text="@string/close" />
 </LinearLayout>

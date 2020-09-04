@@ -11,28 +11,28 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Phoenix_Fragment">
+    style="@style/Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Phoenix_Fragment_Title"
+        style="@style/Fragment.Title"
         android:text="@string/grade_remove_title" />
     <LinearLayout
-        style="@style/Phoenix_Fragment_Layout">
+        style="@style/FragmentLayout">
         <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Entry">
+            style="@style/FragmentLayout.Entry">
             <TextView
                 android:id="@+id/txtGradeRemoveQuestion"
-                style="@style/Phoenix_Fragment_Layout_Entry_Prompt" />
+                style="@style/FragmentLayout.EntryPrompt" />
         </LinearLayout>
         <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Buttons">
+            style="@style/FragmentLayout.Buttons">
             <Button
                 android:id="@+id/btnYes"
-                style="@style/Phoenix_Button.Red"
+                style="@style/FragmentLayoutButton.Red"
                 android:text="@string/yes" />
             <Button
                 android:id="@+id/btnNo"
-                style="@style/Phoenix_Button.Green"
+                style="@style/FragmentLayoutButton.Green"
                 android:text="@string/no" />
         </LinearLayout>
     </LinearLayout>

@@ -221,7 +221,6 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
         }
     }
 
-
     /**
      * The Main Menu Recycler View Adapter
      */
@@ -566,6 +565,4 @@ public class ActivityMain extends FragmentActivity implements InterfaceDataPasse
             getSupportFragmentManager().beginTransaction().replace(R.id.topFrame, departmentremoveFragment).commit();
         }
     }
-
-
 }

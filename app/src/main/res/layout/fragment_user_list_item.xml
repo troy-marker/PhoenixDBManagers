@@ -10,25 +10,25 @@
     Use of this code outside the PHMS is strictly prohibited.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Phoenix_Fragment_Layout_List_Row">
+    style="@style/FragmentLayout.ListRow">
     <TextView
         android:id="@+id/tvId"
         android:layout_width="75dp"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
+        style="@style/FragmentLayout.ListRecycleItem" />
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="150dp"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
+        style="@style/FragmentLayout.ListRecycleItem" />
     <TextView
         android:id="@+id/tvCreated"
         android:layout_width="150dp"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
+        style="@style/FragmentLayout.ListRecycleItem" />
     <TextView
         android:id="@+id/tvGrade"
         android:layout_width="100dp"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
+        style="@style/FragmentLayout.ListRecycleItem" />
     <TextView
         android:id="@+id/tvDepartment"
         android:layout_width="100dp"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle_Item" />
+        style="@style/FragmentLayout.ListRecycleItem" />
 </LinearLayout>

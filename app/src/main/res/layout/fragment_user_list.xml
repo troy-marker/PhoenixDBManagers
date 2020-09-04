@@ -10,35 +10,35 @@
     Use of this code outside the PHMS is strictly prohibited.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Phoenix_Fragment">
+    style="@style/Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Phoenix_Fragment_Title"
+        style="@style/Fragment.Title"
         android:text="@string/user_list_title" />
     <LinearLayout
-        style="@style/Phoenix_Fragment_Layout_List_Header">
+        style="@style/FragmentLayout.ListHeader">
         <TextView
             android:layout_width="75dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/id" />
         <TextView
             android:layout_width="150dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/username"/>
         <TextView
             android:layout_width="150dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/created" />
         <TextView
             android:layout_width="100dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/grade_1" />
         <TextView
             android:layout_width="100dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/department_1" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUserList"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle" />
+        style="@style/FragmentLayout.ListRecycle" />
 </LinearLayout>

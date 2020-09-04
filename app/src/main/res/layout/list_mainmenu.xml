@@ -16,5 +16,5 @@
     android:layout_height="wrap_content">
     <Button
         android:id="@+id/btnMainMenuItem"
-        style="@style/Phoenix_Button.Green" />
+        style="@style/MenuButton.Green" />
 </LinearLayout>

@@ -23,11 +23,9 @@ public class ObjectGrade {
 
     /**
      * Instantiates a new ObjectGrade.
-     *
      * @param id    the id
      * @param grade the grade
      */
-    @SuppressWarnings("unused")
     ObjectGrade(Integer id, String grade) {
         this.id = id;
         this.grade = grade;
@@ -42,10 +40,8 @@ public class ObjectGrade {
 
     /**
      * Gets id.
-     *
      * @return the id
      */
-    @SuppressWarnings("unused")
     Integer getId() {
         return id;
     }
@@ -60,7 +56,6 @@ public class ObjectGrade {
 
     /**
      * Gets grade.
-     *
      * @return the grade
      */
     String getGrade() {
@@ -69,8 +64,7 @@ public class ObjectGrade {
 
     /**
      * Gets the grade name
-     *
-     * @param grade - String - the grade name
+      * @param grade - String - the grade name
      */
     public void setGrade(String grade) {
         this.grade = grade;
@@ -78,7 +72,6 @@ public class ObjectGrade {
 
     /**
      * Override of the toString method
-     *
      * @return String-the access grade name
      */
     @NonNull

@@ -11,23 +11,23 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Phoenix_Fragment">
+    style="@style/Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Phoenix_Fragment_Title"
+        style="@style/Fragment.Title"
         android:text="@string/grade_list_title" />
     <LinearLayout
-        style="@style/Phoenix_Fragment_Layout_List_Header">
+        style="@style/FragmentLayout.ListHeader">
         <TextView
             android:layout_width="75dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/id" />
         <TextView
             android:layout_width="200dp"
-            style="@style/Phoenix_Fragment_Layout_List_Column"
+            style="@style/FragmentLayout.ListColumn"
             android:text="@string/grade_1" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGradeList"
-        style="@style/Phoenix_Fragment_Layout_List_Recycle" />
+        style="@style/FragmentLayout.ListRecycle" />
 </LinearLayout>

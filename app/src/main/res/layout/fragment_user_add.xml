@@ -12,63 +12,63 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Phoenix_Fragment">
+    tools:ignore="Autofill,LabelFor"
+    style="@style/Fragment">
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Phoenix_Fragment_Title"
+        style="@style/Fragment.Title"
         android:text="@string/user_add_title" />
     <LinearLayout
-        style="@style/Phoenix_Fragment_Layout">
+        style="@style/FragmentLayout.Entry" >
         <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Entry">
+            style="@style/FragmentLayout.EntryVertical">
             <LinearLayout
-                style="@style/Phoenix_Input">
+                style="@style/FragmentLayout.Entry">
+
                 <TextView
-                    style="@style/Phoenix_Input.Label"
+                    style="@style/FragmentLayout.EntryPrompt"
                     android:text="@string/username" />
                 <EditText
                     android:id="@+id/etUsername"
-                    style="@style/Phoenix_Input.Edit.Text"
-                    tools:ignore="Autofill,LabelFor" />
+                    style="@style/FragmentInputEdit.Text" />
             </LinearLayout>
             <LinearLayout
-                style="@style/Phoenix_Input">
+                style="@style/FragmentLayout.Entry">
                 <TextView
-                    style="@style/Phoenix_Input.Label"
+                    style="@style/FragmentLayout.EntryPrompt"
                     android:text="@string/password" />
                 <EditText
                     android:id="@+id/etPassword"
-                    style="@style/Phoenix_Input.Edit.Password"
-                    tools:ignore="Autofill,LabelFor" />
+                    style="@style/FragmentInputEdit.Password" />
             </LinearLayout>
             <LinearLayout
-                style="@style/Phoenix_Input">
+                style="@style/FragmentLayout.Entry">
                 <TextView
-                    style="@style/Phoenix_Input.Label"
+                    style="@style/FragmentLayout.EntryPrompt"
                     android:text="@string/grade" />
                 <Spinner
                     android:id="@+id/gradeSpinner"
-                    style="@style/Phoenix_Input.Spinner"/>
+                    style="@style/FragmentLayout.Spinner"/>
             </LinearLayout>
             <LinearLayout
-                style="@style/Phoenix_Input">
+                style="@style/FragmentLayout.Entry">
                 <TextView
-                    style="@style/Phoenix_Input.Label"
+                    style="@style/FragmentLayout.EntryPrompt"
                     android:text="@string/department" />
                 <Spinner
                     android:id="@+id/departmentSpinner"
-                    style="@style/Phoenix_Input.Spinner"/>
+                    style="@style/FragmentLayout.Spinner"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
-            style="@style/Phoenix_Fragment_Layout_Buttons">
+            style="@style/FragmentLayout.Buttons">
             <Button
                 android:id="@+id/btnAddUser"
-                style="@style/Phoenix_Button.Red"
+                style="@style/FragmentLayoutButton.Red"
                 android:text="@string/add_user" />
             <Button
                 android:id="@+id/btnCancel"
-                style="@style/Phoenix_Button.Red"
+                style="@style/FragmentLayoutButton.Red"
                 android:text="@string/cancel" />
         </LinearLayout>
     </LinearLayout>

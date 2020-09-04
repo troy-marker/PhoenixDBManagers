@@ -46,9 +46,8 @@ public class ObjectUser {
         this.department = department;
         this.departmentname = departmentname;
     }
-    @SuppressWarnings("unused")
-    public ObjectUser() {
 
+    public ObjectUser() {
     }
 
     /**
@@ -63,7 +62,6 @@ public class ObjectUser {
      * Set Id
      * @param value int value of the new id
      */
-    @SuppressWarnings("unused")
     public void setId(int value) {
         this.id = value;
     }
@@ -80,7 +78,6 @@ public class ObjectUser {
      * Set the username
      * @param value String the value of the username
      */
-    @SuppressWarnings("unused")
     public void setUsername(String value) {
         this.username = value;
     }
@@ -89,7 +86,6 @@ public class ObjectUser {
      * Gets password.
      * @return the password
      */
-    @SuppressWarnings("unused")
     String getPassword() {
         return password;
     }
@@ -98,7 +94,6 @@ public class ObjectUser {
      * Set the password
      * @param value String value for the password
      */
-    @SuppressWarnings("unused")
     public void setPassword(String value) {
         this.password = value;
     }
@@ -115,7 +110,6 @@ public class ObjectUser {
      * Sets the date/time the user was created
      * @param value String the date/time the user was created
      */
-    @SuppressWarnings("unused")
     public void setCreated(String value) {
         this.created = value;
     }
@@ -124,7 +118,6 @@ public class ObjectUser {
      * Gets the date/time the user was last modified
      * @return the modified date
      */
-    @SuppressWarnings("unused")
     String getModified() {
         return modified;
     }
@@ -133,7 +126,6 @@ public class ObjectUser {
      * Sets the date/time the user was last modified
      * @param value the date/time the user was last modified
      */
-    @SuppressWarnings("unused")
     public void setModified(String value) {
         this.modified = value;
     }
@@ -142,7 +134,6 @@ public class ObjectUser {
      * Gets grade id number
      * @return the grade
      */
-    @SuppressWarnings("unused")
     int getGrade() {
         return grade;
     }
@@ -151,7 +142,6 @@ public class ObjectUser {
      * Sets users grade id
      * @param value users grade id
      */
-    @SuppressWarnings("unused")
     public void setGrade(int value) {
         this.grade = value;
     }
@@ -168,7 +158,6 @@ public class ObjectUser {
      * Sets the user grade text name
      * @param value the users grade text name
      */
-    @SuppressWarnings("unused")
     public void setGradeName(String value) {
         this.gradename = value;
     }
@@ -177,7 +166,6 @@ public class ObjectUser {
      * Gets department id
      * @return the department
      */
-    @SuppressWarnings("unused")
     int getDepartment() {
         return department;
     }
@@ -186,7 +174,6 @@ public class ObjectUser {
      * Sets the user's department id
      * @param value the user's department id
      */
-    @SuppressWarnings("unused")
     public void setDepartment(int value) {
         this.department = value;
     }
@@ -195,7 +182,6 @@ public class ObjectUser {
      * Gets the users department text name
      * @return the department text name
      */
-    @SuppressWarnings("unused")
     String getDepartmentname() {
         return departmentname;
     }
@@ -204,7 +190,6 @@ public class ObjectUser {
      * Sets the user's department text name
      * @param value the user's department text name
      */
-    @SuppressWarnings("unused")
     public void setDepartmentname(String value) {
         this.departmentname = value;
     }
