@@ -28,17 +28,17 @@
             <EditText
                 android:id="@+id/etGradename"
                 style="@style/FragmentInputEdit.Text" />
-        </LinearLayout>
-        <LinearLayout
-            style="@style/FragmentLayout.Buttons">
-            <Button
-                android:id="@+id/btnAddGrade"
-                style="@style/FragmentLayoutButton.Red"
-                android:text="@string/add_grade" />
-            <Button
-                android:id="@+id/btnCancel"
-                style="@style/FragmentLayoutButton.Red"
-                android:text="@string/cancel" />
+            <LinearLayout
+                style="@style/FragmentLayout.Buttons">
+                <Button
+                    android:id="@+id/btnAddGrade"
+                    style="@style/FragmentLayoutButton.Red"
+                    android:text="@string/add_grade" />
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/FragmentLayoutButton.Red"
+                    android:text="@string/cancel" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

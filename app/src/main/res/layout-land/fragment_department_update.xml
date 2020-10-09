@@ -27,7 +27,7 @@
                 style="@style/FragmentLayout.EntryPrompt"
                 android:text="@string/username" />
             <EditText
-                android:id="@+id/etGradename"
+                android:id="@+id/etDepartmentname"
                 style="@style/FragmentInputEdit.Text" />
             <LinearLayout
                 style="@style/FragmentLayout.Buttons">

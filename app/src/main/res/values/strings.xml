@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     The Phoenix Hospitality Management System
     Phoenix Database Manager App Source Code
     String Values XML Definition File
@@ -52,4 +51,5 @@
     <string name="UserRemoveQuestion">Are you sure you want to remove user: %1$s?</string>
     <string name="GradeRemoveQuestion">Are you sure you want to remove grade: %1$s?</string>
     <string name="DepartmentRemoveQuestion">Are you sure you want to remove department: %1$s</string>
+    <string name="InventoryListTitle">%1$s Inventory List</string>
 </resources>

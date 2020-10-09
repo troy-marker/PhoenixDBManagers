@@ -1,3 +1,6 @@
 include ':Phoenix Library V1.0.0'
+include ':Phoenix Library V1.0.0'
+include ':Phoenix Library V1.0.0'
+include ':Phoenix Library V1.0.0'
 include ':app'
 rootProject.name = "PhoenixDBManagers"

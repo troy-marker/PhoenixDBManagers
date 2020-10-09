@@ -21,13 +21,16 @@
     <LinearLayout
         style="@style/FragmentLayout">
         <LinearLayout
-            style="@style/FragmentLayout.Entry">
+            style="@style/FragmentLayout.Entry"
+            android:layout_height="60dp">
             <TextView
                 style="@style/FragmentLayout.EntryPrompt"
                 android:text="@string/departmentname" />
             <EditText
                 android:id="@+id/etDepartmentname"
-                style="@style/FragmentInputEdit.Text" />
+                style="@style/FragmentInputEdit.Text"
+                android:layout_height="48sp"
+                android:layout_marginTop="6dp"/>
             <LinearLayout
                 style="@style/FragmentLayout.Buttons">
                 <Button
