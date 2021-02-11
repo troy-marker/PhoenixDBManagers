@@ -1,17 +1,32 @@
 <component name="ProjectDictionaryState">
   <dictionary name="tlmar">
     <words>
+      <w>adminreq</w>
       <w>autofill</w>
+      <w>casecount</w>
       <w>coaddress</w>
       <w>cocity</w>
       <w>costate</w>
       <w>cozip</w>
+      <w>deletefail</w>
+      <w>departmentadd</w>
+      <w>departmentlist</w>
+      <w>departmentremove</w>
       <w>departmentupdate</w>
+      <w>gradeadd</w>
+      <w>gradelist</w>
+      <w>graderemove</w>
+      <w>gradeupdate</w>
+      <w>loadfail</w>
       <w>lockpass</w>
+      <w>nologged</w>
       <w>phms</w>
+      <w>phoenixdbmanagers</w>
       <w>rdepartment</w>
       <w>rgrade</w>
+      <w>settingmissing</w>
       <w>userlist</w>
+      <w>userremove</w>
       <w>userupdate</w>
     </words>
   </dictionary>

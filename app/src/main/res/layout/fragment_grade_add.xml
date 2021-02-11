@@ -17,14 +17,14 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/grade_add_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout">
         <LinearLayout
             style="@style/FragmentLayout.Entry">
             <TextView
                 style="@style/FragmentLayout.EntryPrompt"
-                android:text="@string/gradename" />
+                android:text="@string/var_grade" />
             <EditText
                 android:id="@+id/etGradename"
                 style="@style/FragmentInputEdit.Text" />
@@ -33,7 +33,7 @@
                 <Button
                     android:id="@+id/btnAddGrade"
                     style="@style/FragmentLayoutButton.Red"
-                    android:text="@string/add_grade" />
+                    android:text="@string/button_add" />
                 <Button
                     android:id="@+id/btnCancel"
                     style="@style/FragmentLayoutButton.Red"

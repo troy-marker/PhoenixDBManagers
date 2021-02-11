@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/user_list_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout.ListHeader">
         <TextView
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="150dp"
             style="@style/FragmentLayout.ListColumn"
-            android:text="@string/username"/>
+            android:text="@string/var_user"/>
         <TextView
             android:layout_width="150dp"
             style="@style/FragmentLayout.ListColumn"
@@ -32,11 +32,11 @@
         <TextView
             android:layout_width="100dp"
             style="@style/FragmentLayout.ListColumn"
-            android:text="@string/grade_1" />
+            android:text="@string/var_grade" />
         <TextView
             android:layout_width="100dp"
             style="@style/FragmentLayout.ListColumn"
-            android:text="@string/department_1" />
+            android:text="@string/var_department" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUserList"

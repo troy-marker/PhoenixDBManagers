@@ -23,6 +23,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.phoenixhosman.phoenixlib.ActivityPhoenixLib;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class FragmentDepartmentUpdate extends Fragment implements View.OnClickListener {
     String apiUrl;
     String coName;
@@ -39,6 +42,7 @@ public class FragmentDepartmentUpdate extends Fragment implements View.OnClickLi
     Button btnUpdateDepartment;
     Button btnCancel;
     EditText etDepartmentname;
+    private final ActivityPhoenixLib Phoenix = new ActivityPhoenixLib();
 
     public FragmentDepartmentUpdate() {
     }
@@ -65,7 +69,7 @@ public class FragmentDepartmentUpdate extends Fragment implements View.OnClickLi
         btnCancel.setOnClickListener(this);
         etDepartmentname.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.department_update_title, coName));
+        tvTitle.setText(getString(R.string.title_update, coName,getString(R.string.var_department)));
         readDepartment();
         return view;
     }
@@ -107,39 +111,41 @@ public class FragmentDepartmentUpdate extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnCancel:
-                ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                break;
-            case R.id.btnUpdateDepartment:
-                if (etDepartmentname.getText().toString().isEmpty()) {
-                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A department name is required", false);
-                } else {
-                    Call<String> call = ManagerAdminApi.getInstance().getApi().rdepartment(record, etDepartmentname.getText().toString());
-                    call.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                            String body = response.body();
-                            try {
-                                assert body != null;
-                                JSONObject obj = new JSONObject(body);
-                                if (obj.optString("success").equals("false")) {
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
-                                } else {
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success(obj.optString("message"));
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadDepartmentList();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+        Button button = (Button)v;
+        String buttonText = button.getText().toString();
+        if (buttonText.equals(getResources().getString(R.string.cancel))) {
+            ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
+        } else if (buttonText.equals(getResources().getString(R.string.button_update, getString(R.string.var_department)))) {
+            if (etDepartmentname.getText().toString().isEmpty()) {
+                Phoenix.Error(Phoenix.getApplicationContext(), getResources().getString(R.string.required, getString(R.string.var_department)), false);
+            } else {
+                Call<String> call = ManagerAdminApi.getInstance().getApi().rdepartment(record, etDepartmentname.getText().toString());
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        String body = response.body();
+                        try {
+                            assert body != null;
+                            JSONObject obj = new JSONObject(body);
+                            if (obj.optString("success").equals("false")) {
+                                Phoenix.Error(Phoenix.getApplicationContext(), obj.optString("message"), false);
+                            } else {
+                                Phoenix.Success(Phoenix.getApplicationContext(), obj.optString("message"), 5);
+                                ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
+                                ((ActivityMain) Objects.requireNonNull(getActivity())).LoadDepartmentList();
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        @Override
-                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        }
-                    });
-                }
-                break;
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    }
+                });
+            }
+        } else {
+            throw new IllegalStateException(getResources().getString(R.string.unexpected) + buttonText);
         }
     }
 }

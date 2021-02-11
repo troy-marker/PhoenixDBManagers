@@ -22,6 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.phoenixhosman.phoenixapi.ObjectUser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,7 +73,7 @@ public class FragmentUserList extends Fragment {
         uRecyclerView.setLayoutManager(uLayoutManager);
         uRecyclerView.setAdapter(uAdapter);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.user_list_title, coName));
+        tvTitle.setText(getString(R.string.title_list, coName,getString(R.string.var_user)));
         readUsers();
         return view;
     }

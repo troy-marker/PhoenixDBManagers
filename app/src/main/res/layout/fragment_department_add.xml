@@ -2,7 +2,7 @@
 <!--
     The Phoenix Hospitality Management System
     Phoenix Database Manager App Source Code
-    Fragment Grade Add Portrait Layout Definition File
+    Fragment Department Add Portrait Layout Definition File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/department_add_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout">
         <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_height="60dp">
             <TextView
                 style="@style/FragmentLayout.EntryPrompt"
-                android:text="@string/departmentname" />
+                android:text="@string/var_department" />
             <EditText
                 android:id="@+id/etDepartmentname"
                 style="@style/FragmentInputEdit.Text"
@@ -36,7 +36,7 @@
                 <Button
                     android:id="@+id/btnAddDepartment"
                     style="@style/FragmentLayoutButton.Red"
-                    android:text="@string/add_department" />
+                    android:text="@string/button_add" />
                 <Button
                     android:id="@+id/btnCancel"
                     style="@style/FragmentLayoutButton.Red"

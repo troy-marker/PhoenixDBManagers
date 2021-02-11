@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Phoenix Hospitality Management System
+    Phoenix Database Manager App Source Code
+    Fragment Inventory Pricing Portrait Layout Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Phoenix_Black"
+    android:orientation="vertical"
+    tools:ignore="LabelFor,TextFields,RtlHardcoded">
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Fragment.Title"
+        android:text="@string/item_pricing" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tier"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+        <TextView
+            android:id="@+id/tier1count"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/count"
+            android:gravity="center" />
+        <TextView
+            android:id="@+id/tier1cost"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="@string/cost_each"
+            android:gravity="center" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:paddingTop="0dp"
+            android:text="@string/_1"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+        <EditText
+            android:id="@+id/etTier1Count"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:paddingBottom="4dp"
+            android:importantForAutofill="no"
+            android:gravity="center"
+            android:textColor="@color/Phoenix_White"
+            android:background="@drawable/x_edit_border_default"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textNoSuggestions"/>
+        <EditText
+            android:id="@+id/etTier1Cost"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:paddingBottom="4dp"
+            android:importantForAutofill="no"
+            android:gravity="center"
+            android:textColor="@color/Phoenix_White"
+            android:background="@drawable/x_edit_border_default"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textNoSuggestions"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:gravity="center"
+            android:paddingTop="0dp"
+            android:text="@string/_2" />
+        <EditText
+            android:id="@+id/etTier2Count"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/x_edit_border_default"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:paddingBottom="4dp"
+            android:textColor="@color/Phoenix_White"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textNoSuggestions" />
+        <EditText
+            android:id="@+id/etTier2Cost"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/x_edit_border_default"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:paddingBottom="4dp"
+            android:textColor="@color/Phoenix_White"
+            android:imeOptions="flagNoExtractUi"
+            android:inputType="textNoSuggestions" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="0dp">
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="-2dp"
+            android:paddingTop="0dp"
+            android:text="@string/_3"
+            android:gravity="center" />
+        <EditText
+            android:id="@+id/etTier3Count"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/x_edit_border_default"
+            android:gravity="center"
+            android:imeOptions="flagNoExtractUi"
+            android:importantForAutofill="no"
+            android:inputType="textNoSuggestions"
+            android:paddingBottom="4dp"
+            android:textColor="@color/Phoenix_White" />
+        <EditText
+            android:id="@+id/etTier3Cost"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/x_edit_border_default"
+            android:gravity="center"
+            android:imeOptions="flagNoExtractUi"
+            android:importantForAutofill="no"
+            android:inputType="textNoSuggestions"
+            android:paddingBottom="4dp"
+            android:textColor="@color/Phoenix_White" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnEditSave2"
+            style="@style/FragmentLayoutButton.Blue"
+            android:text="@string/edit_pricing"/>
+    </LinearLayout>
+</LinearLayout>

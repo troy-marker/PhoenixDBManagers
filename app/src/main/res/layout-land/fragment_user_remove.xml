@@ -15,7 +15,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/user_remove_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout">
         <LinearLayout

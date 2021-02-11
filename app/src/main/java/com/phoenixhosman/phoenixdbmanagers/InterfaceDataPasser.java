@@ -10,6 +10,8 @@
  */
 package com.phoenixhosman.phoenixdbmanagers;
 
+import android.os.Bundle;
+
 /**
  * The Data Passer Interface file
  *
@@ -53,4 +55,30 @@ public interface InterfaceDataPasser {
      * @param id Integer - the record number to remove
      */
     void onDepartmentRemove(int id);
+
+    /**
+     * Interface to add a new supplier to the database
+     */
+    void onSupplierAdd();
+
+    /**
+     * Interface to call the item list fragment
+     */
+    void onItemList(Bundle data);
+
+    /**
+     * Interface to call the item information fragment
+     */
+    void onItemInfo(Bundle data);
+
+    /**
+     * Interface to call the item pricing fragment
+     */
+    void onItemPrice(Bundle data);
+
+    /**
+     * Interface to close the supplier addition frame
+     */
+    void onCloseSupplier();
+
 }

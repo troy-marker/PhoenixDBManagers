@@ -1,7 +1,7 @@
 /*
     The Phoenix Hospitality Management System
     Database Manager App
-    Grade List Fragment Code File
+    Department List Fragment Code File
     Copyright (c) 2020 By Troy Marker Enterprises
     All Rights Under Copyright Reserved
 
@@ -11,28 +11,33 @@
 package com.phoenixhosman.phoenixdbmanagers;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.phoenixhosman.phoenixapi.ObjectDepartment;
+import com.phoenixhosman.phoenixlib.ActivityPhoenixLib;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Grade List Fragment code file
+ * Department List Fragment code file
  * @author Troy Marker
  * @version 1.0.0
  */
@@ -42,7 +47,7 @@ public class FragmentDepartmentList extends Fragment {
     public static Boolean update;
     public static Boolean remove;
     private final ArrayList<ObjectDepartment> departmentList = new ArrayList<>();
-    private RecyclerView dRecyclerView;
+    private final ActivityPhoenixLib Phoenix = new ActivityPhoenixLib();
 
     public FragmentDepartmentList() {
     }
@@ -53,7 +58,7 @@ public class FragmentDepartmentList extends Fragment {
      * @param inflater the layout inflater
      * @param container the container that will hold the fragment
      * @param savedInstanceState the saved instance state
-     * @return View object container the fragment view
+     * @return View object containing the fragment view
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,20 +69,20 @@ public class FragmentDepartmentList extends Fragment {
         update = getArguments().getBoolean("update");
         remove = getArguments().getBoolean("remove");
         new ManagerAdminApi(apiUrl);
-        dRecyclerView = view.findViewById(R.id.recyclerViewDepartmentList);
+        RecyclerView dRecyclerView = view.findViewById(R.id.recyclerViewDepartmentList);
         LinearLayoutManager dLayoutManager = new LinearLayoutManager(this.getActivity());
         dRecyclerView.setHasFixedSize(true);
         dAdapter = new FragmentDepartmentList.DepartmentAdapter(departmentList);
         dRecyclerView.setLayoutManager(dLayoutManager);
         dRecyclerView.setAdapter(dAdapter);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.department_list_title, coName));
+        tvTitle.setText(getString(R.string.title_list, coName, getString(R.string.var_department)));
         readDepartments();
         return view;
     }
 
     /**
-     * Method to read the Grade list from the database
+     * Method to read the Department list from the database
      */
     public void readDepartments() {
         departmentList.clear();
@@ -100,7 +105,7 @@ public class FragmentDepartmentList extends Fragment {
                         }
                         dAdapter.notifyDataSetChanged();
                     } else {
-                        Toast.makeText(getContext(), obj.optString("message"), Toast.LENGTH_LONG).show();
+                        Phoenix.Error(Phoenix.getApplicationContext(), obj.optString("message"), false);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -115,10 +120,10 @@ public class FragmentDepartmentList extends Fragment {
     /**
      * recyclerviewDepartmentList display adapter
      */
-    public static class DepartmentAdapter extends RecyclerView.Adapter<FragmentDepartmentList.DepartmentAdapter.DepartmentViewHolder> {
+    public class DepartmentAdapter extends RecyclerView.Adapter<FragmentDepartmentList.DepartmentAdapter.DepartmentViewHolder> {
         final private List<ObjectDepartment> mDepartmentList;
 
-        static class DepartmentViewHolder extends RecyclerView.ViewHolder {
+        class DepartmentViewHolder extends RecyclerView.ViewHolder {
             final TextView tvId;
             final TextView tvDepartment;
             DepartmentViewHolder(View departmentView) {
@@ -141,10 +146,10 @@ public class FragmentDepartmentList extends Fragment {
             final ObjectDepartment currentDepartment = mDepartmentList.get(position);
             holder.tvId.setText(String.valueOf(currentDepartment.getId()));
             if (update) {
-                holder.tvId.setTextColor(Color.parseColor("#06F522"));
+                holder.tvId.setTextColor(getResources().getColor(R.color.Phoenix_Lt_Green, Objects.requireNonNull(getActivity()).getTheme()));
             }
             if (remove) {
-                holder.tvId.setTextColor(Color.parseColor("#FF2579"));
+                holder.tvId.setTextColor(getResources().getColor(R.color.Phoenix_Lt_Red, Objects.requireNonNull(getActivity()).getTheme()));
             }
             holder.tvDepartment.setText(currentDepartment.getDepartment());
             if (update) {

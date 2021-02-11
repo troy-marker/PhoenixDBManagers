@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    The Phoenix Hospitality Management System
+    Phoenix Database Manager App Source Code
+    Fragment Inventory List Portrait Layout Definition File
+    Copyright (c) 2020 By Troy Marker Enterprises
+    All Rights Under Copyright Reserved
+
+    The code in this file was created for use with the Phoenix Hospitality Management System (PHMS).
+    Use of this code outside the PHMS is strictly prohibited.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Phoenix_Black">
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Fragment.Title"
+        android:text="@string/blank" />
+    <LinearLayout
+        style="@style/FragmentLayout.ListHeader"
+        android:gravity="center"
+        android:layout_width="match_parent">
+        <TextView
+            android:layout_width="100dp"
+            style="@style/FragmentLayout.ListColumn"
+            android:text="@string/item_number" />
+        <TextView
+            android:layout_width="350dp"
+            style="@style/FragmentLayout.ListColumn"
+            android:text="@string/item_description" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewItemList"
+        style="@style/FragmentLayout.ListRecycle" />
+</LinearLayout>

@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/user_add_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout.Entry" >
         <LinearLayout
@@ -27,7 +27,7 @@
 
                 <TextView
                     style="@style/FragmentLayout.EntryPrompt"
-                    android:text="@string/username" />
+                    android:text="@string/var_user" />
                 <EditText
                     android:id="@+id/etUsername"
                     style="@style/FragmentInputEdit.Text" />
@@ -45,7 +45,7 @@
                 style="@style/FragmentLayout.Entry">
                 <TextView
                     style="@style/FragmentLayout.EntryPrompt"
-                    android:text="@string/grade" />
+                    android:text="@string/var_grade" />
                 <Spinner
                     android:id="@+id/gradeSpinner"
                     style="@style/FragmentLayout.Spinner"/>
@@ -54,7 +54,7 @@
                 style="@style/FragmentLayout.Entry">
                 <TextView
                     style="@style/FragmentLayout.EntryPrompt"
-                    android:text="@string/department" />
+                    android:text="@string/var_department" />
                 <Spinner
                     android:id="@+id/departmentSpinner"
                     style="@style/FragmentLayout.Spinner"/>
@@ -65,7 +65,7 @@
             <Button
                 android:id="@+id/btnAddUser"
                 style="@style/FragmentLayoutButton.Red"
-                android:text="@string/add_user" />
+                android:text="@string/button_add" />
             <Button
                 android:id="@+id/btnCancel"
                 style="@style/FragmentLayoutButton.Red"

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/SelectorPage">
+    <TextView
+        style="@style/Fragment.Title"
+        android:text="@string/item_group_selection"/>
+    <LinearLayout
+        style="@style/SelectorPageSelector">
+        <TextView
+            style="@style/SelectorPageSelectorLabel"
+            android:text="@string/InventorySupplier" />
+        <Spinner
+            android:id="@+id/spinnerSupplier"
+            style="@style/SelectorPageSelectorSpinner" />
+        <Button
+            android:id="@+id/buttonSupplier"
+            style="@style/SelectorPageSelectorButton" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/SelectorPageSelector">
+        <TextView
+            style="@style/SelectorPageSelectorLabel"
+            android:text="@string/InventoryCategory" />
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            style="@style/SelectorPageSelectorSpinner" />
+        <Button
+            android:id="@+id/buttonCategory"
+            style="@style/SelectorPageSelectorButton" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/SelectorPageSelector">
+        <TextView
+            style="@style/SelectorPageSelectorLabel"
+            android:text="@string/InventorySubCategory" />
+        <Spinner
+            android:id="@+id/spinnerSubcategory"
+            style="@style/SelectorPageSelectorSpinner" />
+        <Button
+            android:id="@+id/buttonSubcategory"
+            style="@style/SelectorPageSelectorButton" />
+    </LinearLayout>
+</LinearLayout>

@@ -22,6 +22,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.phoenixhosman.phoenixapi.ObjectGrade;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +45,6 @@ public class FragmentGradeList extends Fragment {
     public static Boolean update;
     public static Boolean remove;
     private final ArrayList<ObjectGrade> gradeList = new ArrayList<>();
-    private RecyclerView gRecyclerView;
 
     public FragmentGradeList() {
     }
@@ -64,14 +66,14 @@ public class FragmentGradeList extends Fragment {
         update = getArguments().getBoolean("update");
         remove = getArguments().getBoolean("remove");
         new ManagerAdminApi(apiUrl);
-        gRecyclerView = view.findViewById(R.id.recyclerViewGradeList);
+        RecyclerView gRecyclerView = view.findViewById(R.id.recyclerViewGradeList);
         LinearLayoutManager gLayoutManager = new LinearLayoutManager(this.getActivity());
         gRecyclerView.setHasFixedSize(true);
         gAdapter = new FragmentGradeList.GradeAdapter(gradeList);
         gRecyclerView.setLayoutManager(gLayoutManager);
         gRecyclerView.setAdapter(gAdapter);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.grade_list_title, coName));
+        tvTitle.setText(getString(R.string.title_list, coName, getString(R.string.var_grade)));
         readGrades();
         return view;
     }

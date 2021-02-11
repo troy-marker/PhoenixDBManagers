@@ -11,7 +11,8 @@
 -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Fragment">
+    style="@style/Fragment"
+    android:background="@color/Phoenix_Black">
 
     <ImageView
         android:id="@+id/phoenixlogo"

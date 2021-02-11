@@ -10,16 +10,17 @@
  */
 package com.phoenixhosman.phoenixdbmanagers;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.phoenixhosman.phoenixlib.ActivityPhoenixLib;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Objects;
@@ -40,6 +41,7 @@ public class FragmentGradeRemove extends Fragment implements View.OnClickListene
     TextView tvTitle;
     Button btnYes;
     Button btnNo;
+    private final ActivityPhoenixLib Phoenix = new ActivityPhoenixLib();
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_grade_remove, container, false);
@@ -52,7 +54,7 @@ public class FragmentGradeRemove extends Fragment implements View.OnClickListene
         btnNo = view.findViewById(R.id.btnNo);
         btnYes.setOnClickListener(this);
         btnNo.setOnClickListener(this);
-        tvTitle.setText(getString(R.string.grade_remove_title, coName));
+        tvTitle.setText(getString(R.string.title_remove, coName, getString(R.string.var_grade)));
         txtQuestion = view.findViewById(R.id.txtGradeRemoveQuestion);
         readGrade();
         return view;
@@ -72,13 +74,13 @@ public class FragmentGradeRemove extends Fragment implements View.OnClickListene
                         JSONObject obj = new JSONObject(response.body());
                         if(obj.optString("success").equals("true")) {
                             String dataString = obj.optString("data");
-                            txtQuestion.setText(getString(R.string.GradeRemoveQuestion, dataString));
+                            txtQuestion.setText(getString(R.string.remove_question,getString(R.string.var_department), dataString));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Failed loading grade information", false);
+                    Phoenix.Error(Phoenix.getApplicationContext(), getString(R.string.loadfail, getString(R.string.var_grade)), false);
                 }
             }
             @Override
@@ -93,42 +95,42 @@ public class FragmentGradeRemove extends Fragment implements View.OnClickListene
      */
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.btnNo:
-                ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                break;
-            case R.id.btnYes:
-                Call<String> call = ManagerAdminApi.getInstance().getApi().dgrade(record);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        if (response.isSuccessful()) {
-                            try {
-                                assert response.body() != null;
-                                JSONObject obj = new JSONObject(response.body());
-                                if (obj.optBoolean("success")) {
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success(obj.optString("message"));
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                                }
-                                if (!obj.optBoolean("success")) {
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Unable to delete grade",false);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+        Button button = (Button) v;
+        String buttonText = button.getText().toString();
+        if (buttonText.equals(getString(R.string.no))) {
+            ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
+        } else if (buttonText.equals(getString(R.string.yes))) {
+            Call<String> call = ManagerAdminApi.getInstance().getApi().dgrade(record);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            assert response.body() != null;
+                            JSONObject obj = new JSONObject(response.body());
+                            if (obj.optBoolean("success")) {
+                                Phoenix.Success(Phoenix.getApplicationContext(), obj.optString("message"), 5);
+                                ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
                             }
-                        } else {
-                            ((ActivityMain) Objects.requireNonNull(getActivity())).Error("Failed loading grade information",false);
+                            if (!obj.optBoolean("success")) {
+                                Phoenix.Error(Phoenix.getApplicationContext(), getString(R.string.loadfail, getString(R.string.var_grade)), false);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+                    } else {
+                        Phoenix.Error(Phoenix.getApplicationContext(), getString(R.string.loadfail, getString(R.string.var_grade)), false);
                     }
+                }
 
-                    @Override
-                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                    }
-                });
-                ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + v.getId());
+                @Override
+                public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                }
+            });
+            ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
+        } else {
+            throw new IllegalStateException(getString(R.string.unexpected) + v.getId());
+
         }
     }
 }

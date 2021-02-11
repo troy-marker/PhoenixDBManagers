@@ -23,7 +23,7 @@
         <Button
             android:id="@+id/btnExitButton"
             style="@style/FragmentLayoutButton.Blue"
-            android:text="@string/exit_1" />
+            android:text="@string/exit" />
     </LinearLayout>
     <LinearLayout
         style="@style/ActivityLayout.Middle" >

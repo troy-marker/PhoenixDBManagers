@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Fragment"
+    tools:ignore="Autofill,LabelFor">
+    <TextView
+        style="@style/Fragment.Title"
+        android:text="@string/AddSupplier" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <LinearLayout
+                style="@style/FragmentLayout.Entry">
+                <TextView
+                    style="@style/FragmentLayout.EntryPrompt"
+                    android:text="@string/SupplierName" />
+                <EditText
+                    android:id="@+id/textSupplier"
+                    style="@style/FragmentInputEdit.Text" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/FragmentLayout.Entry">
+                <TextView
+                    style="@style/FragmentLayout.EntryPrompt"
+                    android:text="@string/SupplierAccount" />
+                <EditText
+                    android:id="@+id/textAccount"
+                    style="@style/FragmentInputEdit.Text" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/FragmentLayout.Entry">
+                <TextView
+                    android:text="@string/SupplierPhone"
+                    style="@style/FragmentLayout.EntryPrompt" />
+                <EditText
+                    android:id="@+id/textPhone"
+                    style="@style/FragmentInputEdit.Phone"
+                    android:importantForAutofill="no" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/FragmentLayout.Entry">
+                <TextView
+                    style="@style/FragmentLayout.EntryPrompt"
+                    android:text="@string/SupplierFax" />
+                <EditText
+                    android:id="@+id/textFax"
+                    style="@style/FragmentInputEdit.Phone" />
+            </LinearLayout>
+            <LinearLayout
+                style="@style/FragmentLayout.Entry">
+                <TextView
+                    style="@style/FragmentLayout.EntryPrompt"
+                    android:text="@string/website" />
+                <EditText
+                    android:id="@+id/textWebsite"
+                    style="@style/FragmentInputEdit.Text" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0">
+            <Button
+                android:id="@+id/btnSaveSupplier"
+                style="@style/FragmentLayoutButton.Green"
+                android:text="@string/save_supplier"/>
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/FragmentLayoutButton.Red"
+                android:text="@string/cancel"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

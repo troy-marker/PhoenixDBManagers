@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        style="@style/ActivityLayout.Middle"
+        android:orientation="horizontal">
+        <FrameLayout
+            android:id="@+id/bottomLeftFrame"
+            style="@style/ActivityLayout.MiddleFrame" />
+        <FrameLayout
+            android:id="@+id/bottomRightFrame"
+            style="@style/ActivityLayout.MiddleFrame" />
+    </LinearLayout>
+</LinearLayout>

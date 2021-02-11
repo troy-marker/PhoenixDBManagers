@@ -19,6 +19,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.phoenixhosman.phoenixlib.ActivityPhoenixLib;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Objects;
@@ -37,6 +40,7 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
     Button btnAddGrade;
     Button btnCancel;
     EditText etGradename;
+    private final ActivityPhoenixLib Phoenix = new ActivityPhoenixLib();
 
     public FragmentGradeAdd()  {
     }
@@ -61,50 +65,49 @@ public class FragmentGradeAdd extends Fragment implements View.OnClickListener {
         btnAddGrade.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
         TextView tvTitle = view.findViewById(R.id.tvTitle);
-        tvTitle.setText(getString(R.string.grade_add_title, coName));
+        tvTitle.setText(getString(R.string.title_add, coName, getString(R.string.var_grade)));
         etGradename.requestFocus();
         return view;
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.btnCancel:
-                ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
-                break;
-            case R.id.btnAddGrade:
-                if (etGradename.getText().toString().isEmpty()) {
-                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error("A grade name is required", false);
-                } else {
-                    Call<String> call = ManagerAdminApi.getInstance().getApi().grade(etGradename.getText().toString());
-                    call.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                            String body = response.body();
-                            try {
-                                assert body != null;
-                                JSONObject obj = new JSONObject(body);
-                                if (!obj.optBoolean("success")) {
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Error(obj.optString("message"), false);
-                                    etGradename.setText("");
-                                    etGradename.requestFocus();
-                                } else {
-                                    etGradename.setText("");
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).Success("Grade successfully created");
-                                    ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+        Button button = (Button)v;
+        String buttonText = button.getText().toString();
+        if (buttonText.equals(getResources().getString(R.string.cancel))) {
+            ((ActivityMain) Objects.requireNonNull(getActivity())).ClearTopFrame();
+        } else if (buttonText.equals(getResources().getString(R.string.button_add, getString(R.string.var_grade)))) {
+            if (etGradename.getText().toString().isEmpty()) {
+                Phoenix.Error(Phoenix.getApplicationContext(), getString(R.string.required, getString(R.string.var_grade)), false);
+            } else if (buttonText.equals(getResources().getString(R.string.button_add, getString(R.string.var_grade)))) {
+                Call<String> call = ManagerAdminApi.getInstance().getApi().grade(etGradename.getText().toString());
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        String body = response.body();
+                        try {
+                            assert body != null;
+                            JSONObject obj = new JSONObject(body);
+                            if (!obj.optBoolean("success")) {
+                                Phoenix.Error(Phoenix.getApplicationContext(), obj.optString("message"), false);
+                                etGradename.setText("");
+                                etGradename.requestFocus();
+                            } else {
+                                etGradename.setText("");
+                                Phoenix.Success(Phoenix.getApplicationContext(), "Grade successfully created", 5);
+                                ((ActivityMain) Objects.requireNonNull(getActivity())).LoadGradeList();
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        @Override
-                        public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        }
-                    });
-                }
-                break;
-            default:
+                    }
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                    }
+                });
+            }  else {
                 throw new IllegalStateException("Unexpected value: " + v.getId());
+            }
         }
     }
 }

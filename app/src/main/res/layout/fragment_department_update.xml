@@ -17,7 +17,7 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/Fragment.Title"
-        android:text="@string/grade_update_title" />
+        android:text="@string/blank" />
     <LinearLayout
         style="@style/FragmentLayout">
         <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_width="match_parent">
             <TextView
                 style="@style/FragmentLayout.EntryPrompt"
-                android:text="@string/username" />
+                android:text="@string/var_user" />
             <EditText
                 android:id="@+id/etDepartmentname"
                 style="@style/FragmentInputEdit.Text" />
@@ -34,7 +34,7 @@
                 <Button
                     android:id="@+id/btnUpdateDepartment"
                     style="@style/FragmentLayoutButton.Red"
-                    android:text="@string/update_department" />
+                    android:text="@string/button_update" />
                 <Button
                     android:id="@+id/btnCancel"
                     style="@style/FragmentLayoutButton.Red"

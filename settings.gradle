@@ -1,6 +1,5 @@
-include ':Phoenix Library V1.0.0'
-include ':Phoenix Library V1.0.0'
-include ':Phoenix Library V1.0.0'
-include ':Phoenix Library V1.0.0'
+include ':PhoenixLibraryV1.5.0'
+include ':PhoenixLibraryV1.5.0'
+include ':PhoenixAPIV1.5.0'
 include ':app'
-rootProject.name = "PhoenixDBManagers"
+rootProject.name = "Phoenix Database Managers"

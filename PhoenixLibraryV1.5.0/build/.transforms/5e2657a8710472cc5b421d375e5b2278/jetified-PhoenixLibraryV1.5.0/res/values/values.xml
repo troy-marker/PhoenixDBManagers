@@ -15,6 +15,7 @@
     <string name="close">CLOSE</string>
     <string name="enter">ENTER</string>
     <string name="error">ERROR: %1$s</string>
+    <string name="input_prompt">%1$s</string>
     <string name="success">SUCCESS: %1$s</string>
     <style name="Activity">
         <item name="android:layout_width">match_parent</item>
@@ -57,6 +58,15 @@
     </style>
     <style name="ActivityLayout.Right">
         <item name="android:layout_gravity">end</item>
+    </style>
+    <style name="AppList">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="AppListButton" parent="Logout">
+        <item name="android:layout_width">250dp</item>
     </style>
     <style name="ButtonBank">
         <item name="android:layout_width">510dp</item>
@@ -105,6 +115,9 @@
         <item name="android:paddingStart">5dp</item>
         <item name="android:paddingEnd">5dp</item>
         <item name="android:textSize">36sp</item>
+    </style>
+    <style name="ButtonBankEditText.Blue">
+        <item name="android:background">@color/Phoenix_Lt_Blue</item>
     </style>
     <style name="ButtonBankEditText.Green">
         <item name="android:background">@color/Phoenix_Lt_Green</item>
@@ -225,6 +238,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/Phoenix_Black</item>
     </style>
     <style name="Fragment.Title">
         <item name="android:layout_width">match_parent</item>
@@ -242,6 +256,9 @@
     </style>
     <style name="FragmentInputEdit.Password">
         <item name="android:inputType">textPassword</item>
+    </style>
+    <style name="FragmentInputEdit.Phone">
+        <item name="android:inputType">phone</item>
     </style>
     <style name="FragmentInputEdit.Text">
         <item name="android:inputType">text</item>
@@ -336,6 +353,23 @@
     <style name="FragmentLayoutButton.Yellow">
         <item name="android:background">@drawable/x_yellow_button</item>
     </style>
+    <style name="Header">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="HeaderWrapper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Logout" parent="ButtonBankButton.Blue">
+        <item name="android:layout_width">128dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:paddingTop">50dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
     <style name="MenuButton">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">40dp</item>
@@ -365,5 +399,40 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:spinnerStyle">@android:style/Widget.Holo.Light.Spinner</item>
+    </style>
+    <style name="SelectorPage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/Phoenix_Black</item>
+    </style>
+    <style name="SelectorPageSelector">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="SelectorPageSelectorButton">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginStart">-30dp</item>
+        <item name="android:enabled">false</item>
+        <item name="android:background">@drawable/x_add_icon</item>
+    </style>
+    <style name="SelectorPageSelectorLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="SelectorPageSelectorSpinner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:background">@drawable/x_border_2</item>
+        <item name="android:popupBackground">@drawable/x_border_1</item>
+        <item name="android:spinnerMode">dropdown</item>
+    </style>
+    <style name="UserInformation">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>
